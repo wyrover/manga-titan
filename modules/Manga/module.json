@@ -1,0 +1,15 @@
+{
+    "name": "Manga",
+    "alias": "manga",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Manga\\Providers\\MangaServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}
