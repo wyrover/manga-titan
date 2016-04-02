@@ -1,0 +1,55 @@
+@blue-light-1: lighten(@blue,10%);
+@blue : #2196f3;
+@blue-darken-1: darken(@blue,10%);
+
+@my-font-family: "Open Sans";
+
+.ui.form.login {
+	background-color:#FFF;
+	margin-top:20%;
+	font-family: @my-font-family;
+	font-weight: 400;
+	.form-title {
+		background-color: @blue;
+		color:white;
+		font-weight: 700;
+		text-transform: uppercase;
+		.panel-header(4px;@blue);
+	}
+	.form-field {
+		padding:10px 10px 10px 10px;
+		background-color: #eee;
+		.field {
+			label {
+				font-weight:400;
+			}
+		}
+	}
+	.form-control {
+		background-color: #e0e0e0;
+		color: white;
+		min-height: 60px;
+		.panel-footer (4px; #e0e0e0);
+		.ui.button {
+			text-transform: uppercase;
+		}
+	}
+}
+
+.ui.button {
+	border-radius: 0;
+	font-weight: 400;
+	font-family: @my-font-family;
+}
+
+.panel-header (@radius:8px; @colorbase) {
+	padding: 10px;
+	border-radius:@radius @radius 0px 0px;
+	border-bottom: 4px solid darken(@colorbase, 20%);
+}
+
+.panel-footer (@radius:8px; @colorbase) {
+	padding: 10px;
+	border-radius:0px 0px @radius @radius;
+	border-top: 4px solid darken(@colorbase,20%);
+}

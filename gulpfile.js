@@ -13,5 +13,5 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
 	mix.browserify('lazyload.js','public/js/lazyload.js');
-    mix.sass('app.scss');
+    mix.less('app.less');
 });
