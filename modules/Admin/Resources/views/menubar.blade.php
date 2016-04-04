@@ -1,6 +1,6 @@
 @set('user', Sentinel::getUser())
 
-<div class="ui borderless manga menu">
+<div id="admin-menu" class="ui borderless menu">
 	<div class="ui container">
 		<div class="item">
 			<img src="{{ asset('logo.png') }}">

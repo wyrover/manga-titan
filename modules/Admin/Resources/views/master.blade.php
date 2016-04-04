@@ -4,7 +4,7 @@
 @include('admin::menubar')
 <app-page>
 	@include('admin::sidebar')
-	<div class="thirteen wide column">
+	<div id="admin-area" class="thirteen wide column">
 		@yield('content')
 	</div>
 </app-page>

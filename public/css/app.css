@@ -2,18 +2,23 @@
   border-radius: 0px;
 }
 
+#admin-menu {
+  margin-bottom: 0;
+}
+
 #admin-grid {
   position: absolute;
   height: calc(100% - 51px);
   width: 100%;
+  margin: 0;
+}
+
+#admin-grid .column {
+  padding: 0;
 }
 
 #admin-grid #admin-side {
   background-color: #F5f5f5;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-right: 0;
-  height: 100%;
 }
 
 #admin-grid #admin-side #admin-info {
@@ -46,6 +51,21 @@
 
 #admin-grid #admin-side #admin-note {
   text-align: center;
+}
+
+#admin-area {
+  overflow: hidden;
+}
+
+#admin-area .admin-title {
+  border-radius: 0;
+  margin: 0;
+  border: none medium;
+  box-shadow: none;
+}
+
+#admin-side-right {
+  border-left: 1px solid #e6e6e6;
 }
 
 .ui.manga.card.fluid .content {
