@@ -1,2 +1,3 @@
 # manga-titan
-Manga reader web
+
+Manga reader for web, it's using laravel framework
