@@ -31,8 +31,9 @@ return array(
     */
     
     'paths' => array(
-        public_path('upload'),
-        public_path('images')
+        storage_path('thumb'),
+        storage_path('image'),
+        storage_path('upload')
     ),
 
     /*

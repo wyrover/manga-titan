@@ -1,5 +1,4 @@
 var elixir = require('laravel-elixir');
-
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -12,6 +11,8 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
+	mix.browserify('./modules/Manga/Assets/main.js', "public/modules/manga/js/main.js");
+	mix.browserify('./modules/Admin/Assets/main.js', "public/modules/admin/js/main.js");
 	mix.browserify('lazyload.js','public/js/lazyload.js');
     mix.less('app.less');
 });

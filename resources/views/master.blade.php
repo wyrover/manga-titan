@@ -10,11 +10,31 @@
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800,300italic' rel='stylesheet' type='text/css'>
 		<script src="{{ asset('js/jquery-2.2.2.min.js')}}"></script>
 		<script src="{{ asset('js/semantic.min.js')}}"></script>
+		<script src="{{ asset('js/vue.min.js')}}"></script>
+
+		<!--============================ Page Script Here   ===========================-->
+		@yield('pageScript')
 	</head>
 	<body>
 		@yield('sidebar')
+
 		<div class="pusher">
-			@yield('content')
+			@yield('pageContent')
 		</div>
+
+		<script>
+			var vue = new Vue({
+				el: 'body',
+				ready: function() {
+	                Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
+	            }
+			});
+			$(document).ready(function () {
+				$('.ui.dropdown').dropdown();
+				$('.blurring.image').dimmer({on: 'hover'});
+				$('.ui.rating').rating({maxRating:5});
+			});
+		</script>
+		
 	</body>
 </html>

@@ -4,6 +4,74 @@
 
 @my-font-family: "Open Sans";
 
+.manga.menu {
+	border-radius:0px;
+}
+#admin-grid {
+	position:absolute;
+	height:~"calc(100% - 51px)";
+	width:100%;
+	#admin-side {
+		background-color:#F5f5f5;
+		padding-top:0;
+		padding-bottom:0;
+		padding-right:0;
+		height:100%;
+		#admin-info {
+			text-align:center;
+			width:100%;
+			padding:1em;
+			.image {
+				.ui.image {
+					margin-left:auto;
+					margin-right:auto;
+				}
+			}
+		}
+		#admin-menu {
+			width:100%;
+			box-shadow:none;
+			border-radius:0;
+			border-left:none medium;
+			border-right:none medium;
+			background-color:transparent;
+			.item:first-child {
+				border-radius:0;
+			}
+			.item:last-child {
+				border-radius:0;
+			}
+		}
+		#admin-note {
+			text-align:center;
+		}
+	}
+}
+
+.ui.manga.card.fluid {
+	.content {
+		font-family:@my-font-family;
+		font-size: 11px;
+		.header {
+			font-weight:300;
+			font-size: 13px;
+		}
+	}
+}
+.ui.vertical.footer {
+	padding:3rem 0;
+}
+.manga-grid.ui.grid {
+	.manga-list.row {
+		.column { margin-bottom:1rem; }
+	}
+}
+.manga-side-list.list {
+	.item .description {
+		padding-top:1em;
+		color: rgba(0, 0, 0, 0.4);
+	}
+}
 .ui.form.login {
 	background-color:#FFF;
 	margin-top:20%;

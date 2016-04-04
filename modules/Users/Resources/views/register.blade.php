@@ -4,7 +4,7 @@
 @parent - Register
 @endsection
 
-@section('content')
+@section('pageContent')
 <div class="ui grid centered container">
 	<div class="six wide column">
 		<form class="ui form login" action="" method="post">

@@ -6,6 +6,9 @@
   "dependencies": {
     "bootstrap-sass": "^3.0.0",
     "laravel-elixir": "^3.0.0",
-    "semantic-ui": "^2.1.8"
+    "laravel-elixir-browserify": "^0.8.1",
+    "semantic-ui": "^2.1.8",
+    "vue": "^1.0.20",
+    "vueify": "^8.3.6"
   }
 }

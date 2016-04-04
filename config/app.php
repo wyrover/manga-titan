@@ -146,7 +146,6 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Pingpong\Themes\ThemesServiceProvider::class,
-        Pingpong\Widget\WidgetServiceProvider::class,
         Pingpong\Modules\ModulesServiceProvider::class,
         Radic\BladeExtensions\BladeExtensionsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
@@ -202,7 +201,6 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         'Theme' => Pingpong\Themes\ThemeFacade::class,
-        'Widget' => Pingpong\Widget\WidgetFacade::class,
         'Module' => Pingpong\Modules\Facades\Module::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Activation' => Cartalyst\Sentinel\Laravel\Facades\Activation::class,

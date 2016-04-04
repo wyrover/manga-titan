@@ -15,7 +15,6 @@
         "raveren/kint": "^1.0",
         "erusev/parsedown": "^1.6",
         "pingpong/modules": "~2.0",
-        "pingpong/widget" : "~2.0",
         "pingpong/themes": "~2.0",
         "ircmaxell/password-compat": "1.*"
     },

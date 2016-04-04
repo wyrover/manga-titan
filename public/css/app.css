@@ -1,1 +1,117 @@
-.ui.button,.ui.form.login{font-family:"Open Sans"}.ui.form.login{background-color:#FFF;margin-top:20%;font-weight:400}.ui.form.login .form-title{background-color:#2196f3;color:#fff;font-weight:700;text-transform:uppercase;padding:10px;border-radius:4px 4px 0 0;border-bottom:4px solid #0960a5}.ui.button,.ui.form.login .form-field .field label{font-weight:400}.ui.form.login .form-field{padding:10px;background-color:#eee}.ui.form.login .form-control{background-color:#e0e0e0;color:#fff;min-height:60px;padding:10px;border-radius:0 0 4px 4px;border-top:4px solid #adadad}.ui.form.login .form-control .ui.button{text-transform:uppercase}.ui.button{border-radius:0}
+.manga.menu {
+  border-radius: 0px;
+}
+
+#admin-grid {
+  position: absolute;
+  height: calc(100% - 51px);
+  width: 100%;
+}
+
+#admin-grid #admin-side {
+  background-color: #F5f5f5;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 0;
+  height: 100%;
+}
+
+#admin-grid #admin-side #admin-info {
+  text-align: center;
+  width: 100%;
+  padding: 1em;
+}
+
+#admin-grid #admin-side #admin-info .image .ui.image {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#admin-grid #admin-side #admin-menu {
+  width: 100%;
+  box-shadow: none;
+  border-radius: 0;
+  border-left: none medium;
+  border-right: none medium;
+  background-color: transparent;
+}
+
+#admin-grid #admin-side #admin-menu .item:first-child {
+  border-radius: 0;
+}
+
+#admin-grid #admin-side #admin-menu .item:last-child {
+  border-radius: 0;
+}
+
+#admin-grid #admin-side #admin-note {
+  text-align: center;
+}
+
+.ui.manga.card.fluid .content {
+  font-family: "Open Sans";
+  font-size: 11px;
+}
+
+.ui.manga.card.fluid .content .header {
+  font-weight: 300;
+  font-size: 13px;
+}
+
+.ui.vertical.footer {
+  padding: 3rem 0;
+}
+
+.manga-grid.ui.grid .manga-list.row .column {
+  margin-bottom: 1rem;
+}
+
+.manga-side-list.list .item .description {
+  padding-top: 1em;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.ui.form.login {
+  background-color: #FFF;
+  margin-top: 20%;
+  font-family: "Open Sans";
+  font-weight: 400;
+}
+
+.ui.form.login .form-title {
+  background-color: #2196f3;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 10px;
+  border-radius: 4px 4px 0px 0px;
+  border-bottom: 4px solid #0960a5;
+}
+
+.ui.form.login .form-field {
+  padding: 10px 10px 10px 10px;
+  background-color: #eee;
+}
+
+.ui.form.login .form-field .field label {
+  font-weight: 400;
+}
+
+.ui.form.login .form-control {
+  background-color: #e0e0e0;
+  color: white;
+  min-height: 60px;
+  padding: 10px;
+  border-radius: 0px 0px 4px 4px;
+  border-top: 4px solid #adadad;
+}
+
+.ui.form.login .form-control .ui.button {
+  text-transform: uppercase;
+}
+
+.ui.button {
+  border-radius: 0;
+  font-weight: 400;
+  font-family: "Open Sans";
+}
