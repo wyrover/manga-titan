@@ -4,7 +4,7 @@
 
 @my-font-family: "Open Sans";
 .form-admin {
-	> .form-title.ui.segment {
+	.form-title.ui.segment {
 		display:flex;
 		padding-top:0.5em;
 		padding-bottom:0.5em;
@@ -24,7 +24,7 @@
 			}
 		}
 	}
-	> .form-content {
+	.form-content {
 		.mt-segment;
 		height: ~"calc(100% - 98px)";
 		padding:0;
@@ -54,22 +54,27 @@
 			} 
 		}
 	}
-	> .form-footer {
+	.form-footer {
 		.mt-segment;
 		min-height:48px;
 		background-color:#F5f5f5;
 		padding-top:0.5em;
 		padding-bottom:0.5em;
 	}
-	> .form-empty > .ui.icon.header {
+	.form-empty > .ui.icon.header {
 		display:block;
 		position:absolute;
 		top:~"calc(50% - 51px)";
 		width:100%;
 	}
-	> .form-field {
+	.form-field {
 		.mt-segment;
 		padding:1em;
+	}
+	.ui.form {
+		background-color:white;
+		height:100%;
+		z-index:1;
 	}
 }
 .mt-segment () {

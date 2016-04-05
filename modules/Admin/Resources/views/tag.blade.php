@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="ui grid">
-	<div class="ten wide column form-admin" id="admin-side-left">
+	<div class="nine wide column form-admin" id="admin-side-left">
 		<div class="ui secondary inverted green segment form-title">
 			<div class="title"><i class="icon tags"></i> Tags List</div>
 			<div class="control">
@@ -31,7 +31,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="six wide column ui form form-admin" id="admin-side-right">
+	<div class="seven wide column ui form form-admin" id="admin-side-right">
+		<div class="pusher"></div>
 		<div class="ui secondary inverted green segment form-title">
 			<div class="title">Edit Tag</div>
 			<div class="control">
@@ -46,15 +47,6 @@
 			</div>
 			<div class="field"><label for="">Description</label><textarea name="" id="" cols="30" rows="10"></textarea></div>
 		</div>
-		<!-- <div class="form-empty">
-			<h3 class="ui icon header">
-				<i class="tags icon"></i>
-				<div class="content">
-					Tag Settings
-					<div class="sub header">Manage your tag.</div>
-				</div>
-			</h3>
-		</div> -->
 	</div>
 </div>
 @endsection

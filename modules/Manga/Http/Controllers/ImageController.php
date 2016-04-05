@@ -1,22 +1,36 @@
 <?php namespace Modules\Manga\Http\Controllers;
 
 use Pingpong\Modules\Routing\Controller;
+use Illuminate\Http\Request;
 use File;
 use Response;
 
 class ImageController extends Controller {
+
+	public function upload(Request $r)
+	{
+		if ($r->hasFile('image')) {
+			$image = $r->file('image');
+			$filename = sprintf('%s-%s', time(), $image->getClientOriginalName());
+
+			$image->move(storage_path('image'), $filename);
+
+			return response()->json(['data' => ['filename' => $filename], 'success' => true]);
+		}
+		return response()->json(['success' => false]);
+	}
 	
 	public function image($imgId)
 	{
-		return $this->generateImage('image', $imgId);
+		return $this->getImage('image', $imgId);
 	}
 
 	public function thumb($imgId)
 	{
-		return ;
+		return $this->getImage('image', $imgId, 'medium');
 	}
 
-	public function generateImage($path_storage, $filename, $imgsize = false)
+	public function getImage($path_storage, $filename, $imgsize = false)
 	{
 		$filePath = storage_path($path_storage) . '/' . $filename;
 		if ( ! File::exists($filePath) )

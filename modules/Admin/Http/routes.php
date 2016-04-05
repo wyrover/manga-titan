@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Modules\Admin\Http\Controllers', 'middleware' => 'sentinel.auth'], function()
+Route::group(['prefix' => 'admin', 'namespace' => 'Modules\Admin\Http\Controllers', 'middleware' => 'sentinel.admin'], function()
 {
 	Route::get('/', ['uses' => 'AdminController@index', 'as' => 'admin.home']);
 	Route::get('manga', ['uses' => 'AdminController@manga', 'as' => 'admin.manga']);

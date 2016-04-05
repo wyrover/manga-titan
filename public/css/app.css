@@ -1,4 +1,4 @@
-.form-admin > .form-title.ui.segment {
+.form-admin .form-title.ui.segment {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -10,24 +10,24 @@
   box-shadow: none;
 }
 
-.form-admin > .form-title.ui.segment > .title {
+.form-admin .form-title.ui.segment > .title {
   min-height: 34px;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   width: calc(100% - 150px);
 }
 
-.form-admin > .form-title.ui.segment > .control {
+.form-admin .form-title.ui.segment > .control {
   width: 150px;
   text-align: right;
 }
 
-.form-admin > .form-title.ui.segment > .control > .ui.button {
+.form-admin .form-title.ui.segment > .control > .ui.button {
   margin-right: 0;
   margin-left: 0.25em;
 }
 
-.form-admin > .form-content {
+.form-admin .form-content {
   margin: 0;
   border-radius: 0;
   border: none medium;
@@ -36,34 +36,34 @@
   padding: 0;
 }
 
-.form-admin > .form-content > .ui.table.form-table > thead > tr:first-child {
+.form-admin .form-content > .ui.table.form-table > thead > tr:first-child {
   background-color: #F5f5f5;
 }
 
-.form-admin > .form-content > .ui.table.form-table > thead > tr:first-child th:first-child {
+.form-admin .form-content > .ui.table.form-table > thead > tr:first-child th:first-child {
   width: 50px;
   padding-left: 10px;
 }
 
-.form-admin > .form-content > .ui.table.form-table > thead > tr:first-child th {
+.form-admin .form-content > .ui.table.form-table > thead > tr:first-child th {
   padding-top: 13px;
 }
 
-.form-admin > .form-content > .ui.table.form-table > thead > tr:first-child th:last-child {
+.form-admin .form-content > .ui.table.form-table > thead > tr:first-child th:last-child {
   width: 95px;
   padding-right: 10px;
 }
 
-.form-admin > .form-content > .ui.table.form-table > tbody > tr > td:first-child {
+.form-admin .form-content > .ui.table.form-table > tbody > tr > td:first-child {
   padding-left: 10px;
 }
 
-.form-admin > .form-content > .ui.table.form-table > tbody > tr > td:last-child {
+.form-admin .form-content > .ui.table.form-table > tbody > tr > td:last-child {
   text-align: right;
   padding-right: 10px;
 }
 
-.form-admin > .form-footer {
+.form-admin .form-footer {
   margin: 0;
   border-radius: 0;
   border: none medium;
@@ -74,19 +74,25 @@
   padding-bottom: 0.5em;
 }
 
-.form-admin > .form-empty > .ui.icon.header {
+.form-admin .form-empty > .ui.icon.header {
   display: block;
   position: absolute;
   top: calc(50% - 51px);
   width: 100%;
 }
 
-.form-admin > .form-field {
+.form-admin .form-field {
   margin: 0;
   border-radius: 0;
   border: none medium;
   box-shadow: none;
   padding: 1em;
+}
+
+.form-admin .ui.form {
+  background-color: white;
+  height: 100%;
+  z-index: 1;
 }
 
 .manga.menu {
