@@ -9,4 +9,28 @@ class AdminController extends Controller {
 		return view('admin::home');
 	}
 	
+	public function manga()
+	{
+		return view('admin::manga');
+	}
+
+	public function tag()
+	{
+		return view('admin::tag');
+	}
+
+	public function category()
+	{
+		return view('admin::category');
+	}
+
+	public function comment()
+	{
+		return view('admin::comment');
+	}
+
+	public function user()
+	{
+		return view('admin::user');
+	}
 }
