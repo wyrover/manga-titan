@@ -1,3 +1,94 @@
+.form-admin > .form-title.ui.segment {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin: 0;
+  border-radius: 0;
+  border: none medium;
+  box-shadow: none;
+}
+
+.form-admin > .form-title.ui.segment > .title {
+  min-height: 34px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  width: calc(100% - 150px);
+}
+
+.form-admin > .form-title.ui.segment > .control {
+  width: 150px;
+  text-align: right;
+}
+
+.form-admin > .form-title.ui.segment > .control > .ui.button {
+  margin-right: 0;
+  margin-left: 0.25em;
+}
+
+.form-admin > .form-content {
+  margin: 0;
+  border-radius: 0;
+  border: none medium;
+  box-shadow: none;
+  height: calc(100% - 98px);
+  padding: 0;
+}
+
+.form-admin > .form-content > .ui.table.form-table > thead > tr:first-child {
+  background-color: #F5f5f5;
+}
+
+.form-admin > .form-content > .ui.table.form-table > thead > tr:first-child th:first-child {
+  width: 50px;
+  padding-left: 10px;
+}
+
+.form-admin > .form-content > .ui.table.form-table > thead > tr:first-child th {
+  padding-top: 13px;
+}
+
+.form-admin > .form-content > .ui.table.form-table > thead > tr:first-child th:last-child {
+  width: 95px;
+  padding-right: 10px;
+}
+
+.form-admin > .form-content > .ui.table.form-table > tbody > tr > td:first-child {
+  padding-left: 10px;
+}
+
+.form-admin > .form-content > .ui.table.form-table > tbody > tr > td:last-child {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.form-admin > .form-footer {
+  margin: 0;
+  border-radius: 0;
+  border: none medium;
+  box-shadow: none;
+  min-height: 48px;
+  background-color: #F5f5f5;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.form-admin > .form-empty > .ui.icon.header {
+  display: block;
+  position: absolute;
+  top: calc(50% - 51px);
+  width: 100%;
+}
+
+.form-admin > .form-field {
+  margin: 0;
+  border-radius: 0;
+  border: none medium;
+  box-shadow: none;
+  padding: 1em;
+}
+
 .manga.menu {
   border-radius: 0px;
 }
@@ -54,7 +145,7 @@
 }
 
 #admin-area {
-  overflow: hidden;
+  border-left: 1px solid #e6e6e6;
 }
 
 #admin-area .admin-title {
@@ -62,6 +153,11 @@
   margin: 0;
   border: none medium;
   box-shadow: none;
+}
+
+#admin-area > .ui.grid {
+  height: 100%;
+  margin: 0;
 }
 
 #admin-side-right {
@@ -131,7 +227,25 @@
 }
 
 .ui.button {
-  border-radius: 0;
+  border-radius: 0 !important;
+  font-weight: 400;
+  font-family: "Open Sans";
+}
+
+.ui.buttons {
+  border-radius: 0 !important;
+  font-weight: 400;
+  font-family: "Open Sans";
+}
+
+.ui.buttons .ui.button:first-child {
+  border-radius: 0 !important;
+  font-weight: 400;
+  font-family: "Open Sans";
+}
+
+.ui.buttons .ui.button:last-child {
+  border-radius: 0 !important;
   font-weight: 400;
   font-family: "Open Sans";
 }
