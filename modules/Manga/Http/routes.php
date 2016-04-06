@@ -17,5 +17,6 @@ Route::group(['prefix' => 'manga', 'namespace' => 'Modules\Manga\Http\Controller
 	});
 	Route::group(['middleware' => 'sentinel.admin'], function () {
 		Route::post('upload/image',	['as' => 'image.upload', 'uses' => 'ImageController@upload']);
+		Route::post('ajax', ['as' => 'manga.ajax', 'uses' => 'AjaxController@processor']);
 	});
 });

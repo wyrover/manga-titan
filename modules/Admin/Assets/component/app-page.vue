@@ -6,6 +6,9 @@
 
 <script>
 	module.exports = {
+		props:{
+			urlAjax: {required: true, type:String}
+		},
 		data: function () {
 			return {};
 		},

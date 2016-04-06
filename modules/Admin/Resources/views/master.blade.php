@@ -2,7 +2,7 @@
 
 @section('pageContent')
 @include('admin::menubar')
-<app-page>
+<app-page url-ajax="{{ route('manga.ajax') }}">
 	@include('admin::sidebar')
 	<div id="admin-area" class="thirteen wide column">
 		@yield('content')
