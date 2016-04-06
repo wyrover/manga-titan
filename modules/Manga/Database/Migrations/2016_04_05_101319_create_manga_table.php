@@ -14,7 +14,7 @@ class CreateMangaTable extends Migration {
     {
         Schema::create('category', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('category', 30);
+            $table->string('category', 40)->unique();
             $table->text('description')->nullable();
             $table->timestamps();
         });
