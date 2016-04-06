@@ -2,6 +2,11 @@
 /node_modules
 /public/modules/*
 /resources/views/modules/*
+/storage/image/*
+!/storage/image/001.jpg
+!/storage/image/dummy.png
+/storage/upload/*
+/storage/thumb/*
 Homestead.yaml
 Homestead.json
 .env
