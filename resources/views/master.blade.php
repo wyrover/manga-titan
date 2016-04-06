@@ -12,7 +12,8 @@
 		<script src="{{ asset('js/jquery-2.2.2.min.js')}}"></script>
 		<script src="{{ asset('js/semantic.min.js')}}"></script>
 		<script src="{{ asset('js/vue.js')}}"></script>
-
+		<!--============================ Page Style Here    ===========================-->
+		@yield('pageStyle')
 		<!--============================ Page Script Here   ===========================-->
 		@yield('pageScript')
 	</head>

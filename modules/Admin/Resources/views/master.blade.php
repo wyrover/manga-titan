@@ -12,4 +12,9 @@
 
 @section('pageScript')
 <script src="{{ Module::asset('admin:js/main.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+@endsection
+
+@section('pageStyle')
+<link rel="stylesheet" href="{{ asset('css/sweetalert2.css') }}">
 @endsection
