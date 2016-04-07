@@ -6,4 +6,8 @@ class MangaPage extends Model {
 
     protected $fillable = [];
     protected $table = 'manga_page';
+
+    public function manga(){
+    	return $this->belongsTo(__NAMESPACE__ . '\Manga', 'id_manga');
+    }
 }

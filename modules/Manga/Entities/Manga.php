@@ -15,6 +15,10 @@ class Manga extends Model implements TaggableInterface{
     	return $this->belongsTo(__NAMESPACE__ . '\Category', 'id_category');
     }
 
+    public function mangapages() {
+        return $this->hasMany(__NAMESPACE__. '\MangaPage', 'id_manga');
+    }
+
     public function getTagsArr(){
     	$ret = [];
     	$tags = $this->tags;
