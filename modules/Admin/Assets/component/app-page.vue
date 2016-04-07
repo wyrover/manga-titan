@@ -57,6 +57,7 @@
 			'edit-manga': function (data) {return this.$broadcast('edit-manga',data);},
 			'refresh-manga': function() {return this.$broadcast('refresh-manga');},
 			'hide-form-manga': function () {return this.$broadcast('hide-form-manga');},
+			'show-page': function (data) {return this.$broadcast('show-page',data);},
 			'app-notify': function(data) {return this.appNotify(data);},
 			'app-confirm': function (data) {return this.appConfirm(data);},
 			'ajax-action': function (data) {return this.appAjax(data);}

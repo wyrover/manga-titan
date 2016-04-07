@@ -21,7 +21,7 @@
 		<div class="title" v-text="title_form"></div>
 		<div class="control">
 			<div class="ui icon small buttons">
-				<button v-if="is_edit" class="ui blue button"><i class="icon upload"></i></button>
+				<button v-if="is_edit" class="ui blue button" @click="showPage"><i class="icon upload"></i></button>
 				<button class="ui blue button" @click="save"><i class="icon save"></i></button>
 				<button class="ui red button" @click="cancel"><i class="icon remove"></i></button>
 			</div>
@@ -68,7 +68,7 @@
 				return (this.manga_id != null)?'Edit Manga':'New Manga';
 			},
 			url_image : function () {
-				return (this.manga_cover != null)?'/manga/thumb/' + this.manga_cover:'/manga/image/dummy.png';
+				return (this.manga_cover != null)?'/manga/image/thumb/' + this.manga_cover:'/manga/image/original/dummy.png';
 			}
 		},
 		data: function () {
@@ -80,6 +80,13 @@
 			};
 		},
 		methods: {
+			showPage: function () {
+				var data = {
+					manga_id: this.manga_id,
+					manga_title: this.manga_title
+				};
+				this.$dispatch('show-page', data);
+			},
 			save: function () {
 				var data = {
 					data: {

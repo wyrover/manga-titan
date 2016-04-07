@@ -64,6 +64,16 @@
   padding-right: 10px;
 }
 
+.form-admin .form-content > .ui.images {
+  margin: 0;
+  padding-top: 0.5em;
+}
+
+.form-admin .form-content > .ui.message {
+  border-radius: 0;
+  display: block;
+}
+
 .form-admin .form-footer {
   margin: 0;
   border-radius: 0;
@@ -73,6 +83,23 @@
   background-color: #F5f5f5;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.form-admin .form-footer .control {
+  width: 150px;
+}
+
+.form-admin .form-footer .notes {
+  width: calc(100% - 150px);
+}
+
+.form-admin .form-footer .notes .note {
+  position: absolute;
+  right: 1em;
+  top: calc(35% - 3px);
 }
 
 .form-admin .form-empty > .ui.icon.header {
@@ -165,6 +192,13 @@
 #admin-area > .ui.grid {
   height: 100%;
   margin: 0;
+}
+
+#admin-area > .ui.grid.grid-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 #admin-side-right {

@@ -54,6 +54,14 @@
 				}
 			} 
 		}
+		> .ui.images {
+			margin:0;
+			padding-top:0.5em;
+		}
+		> .ui.message {
+			border-radius:0;
+			display:block;
+		}
 	}
 	.form-footer {
 		.mt-segment;
@@ -61,6 +69,18 @@
 		background-color:#F5f5f5;
 		padding-top:0.5em;
 		padding-bottom:0.5em;
+		display:flex;
+		.control {
+			width:150px;
+		}
+		.notes {
+			width:~"calc(100% - 150px)";
+			.note {
+				position: absolute;
+				right:1em;
+				top:~"calc(35% - 3px)";
+			}
+		}
 	}
 	.form-empty > .ui.icon.header {
 		display:block;
@@ -142,6 +162,12 @@
 	> .ui.grid {
 		height: 100%;
 		margin:0;
+	}
+	> .ui.grid.grid-fade {
+		position: absolute;
+		top:0;
+		left:0;
+		right:0;
 	}
 }
 #admin-side-right {

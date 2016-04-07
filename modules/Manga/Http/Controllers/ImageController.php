@@ -11,10 +11,22 @@ class ImageController extends Controller {
 	{
 		if ($r->hasFile('image')) {
 			$image = $r->file('image');
-			$filename = sprintf('%s-%s', time(), $image->getClientOriginalName());
+			if (is_array($image)) {
+				$filename = [];
+				foreach ($image as $img) {
+					$originalfname = $img->getClientOriginalName();
+					$newfilename = sprintf('%s-%s', time(), $originalfname);
+					$filename[$originalfname] = $newfilename;
 
-			$image->move(storage_path('image'), $filename);
+					$img->move(storage_path('image'), $newfilename);
+				}
+				ksort($filename);
+				$filename = array_values($filename);
+			} else {
+				$filename = sprintf('%s-%s', time(), $image->getClientOriginalName());
 
+				$image->move(storage_path('image'), $filename);
+			}
 			return response()->json(['data' => ['filename' => $filename], 'success' => true]);
 		}
 		return response()->json(['success' => false]);
@@ -34,7 +46,7 @@ class ImageController extends Controller {
 	{
 		$filePath = storage_path($path_storage) . '/' . $filename;
 		if ( ! File::exists($filePath) )
-			return Response::make("File does not exist." . $filePath, 404);
+			return Response::make("File does not exist." . $filename, 404);
 
 		$fileContents = File::get($filePath);
 		$mime = exif_imagetype($filePath);
@@ -43,14 +55,19 @@ class ImageController extends Controller {
 			case IMAGETYPE_JPEG:
 				$contentType = 'image/jpeg';break;
 			case IMAGETYPE_GIF;
-				$contentType = 'image/gif';
+				$contentType = 'image/gif';break;
 			case IMAGETYPE_PNG;
-				$contentType = 'image/png';
+				$contentType = 'image/png';break;
 			default:
 				$contentType = false;break;
 		}
 
-		return Response::make($fileContents, 200, array('Content-Type' => $contentType));
+		$header = [
+			'Content-Type' => $contentType,
+			'Last-Modified' => date('r', time()),
+			'Expires' => date('r', time() + 3600)
+		];
+		return Response::make($fileContents, 200, $header);
 	}
 	
 }

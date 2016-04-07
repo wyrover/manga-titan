@@ -22,11 +22,23 @@ class AjaxController extends Controller {
 			case 'get-tags':
 				$result = $this->getTags();
 				break;
+			case 'get-page':
+				$result = $this->getPage($request->data);
+				break;
+			case 'add-page':
+				$result = $this->addPage($request->data);
+				break;
 			case 'save-manga': 
 				$result = $this->saveManga($request->data);
 				break;
 			case 'delete-manga':
 				$result = $this->deleteManga($request->data);
+				break;
+			case 'delete-page':
+				$result = $this->deletePage($request->data);
+				break;
+			case 'delete-all-pages':
+				$result = $this->deleteAllPages($request->data);
 				break;
 			default:
 				$result['message'] = 'undefined client action';

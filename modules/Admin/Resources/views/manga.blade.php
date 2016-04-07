@@ -10,4 +10,9 @@
 		@include('admin::empty')
 	</div>
 </div>
+<div class="ui grid grid-fade">
+	<div class="sixteen wide column form-admin">
+		<manga-page form-id="manga-page" :is-hidden="true"></manga-page>
+	</div>
+</div>
 @endsection
