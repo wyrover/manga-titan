@@ -36,21 +36,15 @@
 				      <a class="ui left corner red label">
 				        <i class="heart icon"></i>
 				      </a>
-				      <img src="{{ route('image.read', ['imgId' => '001.jpg']) }}">
+				      <img src="{{ route('imagecache', ['template'=> 'thumb', 'filename' => '001.jpg']) }}">
 				    </div>
 				    <div class="content">
-      <a class="header">Team Hessasda dada asda efa sfa e</a>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="icon unhide"></i>
-        2
-      </a>
-      <a>
-      	<i class="icon file"></i>
-      	1292
-      </a>
-    </div>
+						<a class="header">Team Hessasda dada asda efa sfa e</a>
+					</div>
+					<div class="extra content">
+						<a><i class="icon unhide"></i>2</a>
+						<a><i class="icon file"></i>1292</a>
+					</div>
 				</div>
 			</div>
 		</div>

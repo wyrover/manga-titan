@@ -10,10 +10,6 @@ Route::group(['prefix' => 'manga', 'namespace' => 'Modules\Manga\Http\Controller
 		Route::get('favorite', ['as' => 'manga.favorite', 'uses' => 'MangaController@favorite']);
 		Route::get('desc/{id}', ['as' => 'manga.desc', 'uses' => 'MangaController@desc']);
 		Route::get('read/{id}/{page?}', ['as' => 'manga.read', 'uses' => 'MangaController@read']);
-
-		//Image Handler
-		Route::get('image/{imgId}', ['as' => 'image.read', 'uses' => 'ImageController@image']);
-		Route::get('thumb/{imgId}', ['as' => 'image.thumb', 'uses' => 'ImageController@thumb']);
 	});
 	Route::group(['middleware' => 'sentinel.admin'], function () {
 		Route::post('upload/image',	['as' => 'image.upload', 'uses' => 'ImageController@upload']);

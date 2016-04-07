@@ -48,6 +48,9 @@ class ImageController extends Controller {
 		if ( ! File::exists($filePath) )
 			return Response::make("File does not exist." . $filename, 404);
 
+		if ($imgsize !== false) {
+			$image = null;
+		}
 		$fileContents = File::get($filePath);
 		$mime = exif_imagetype($filePath);
 

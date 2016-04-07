@@ -16,7 +16,7 @@ return array(
     |
     */
    
-    'route' => null,
+    'route' => "manga/image",
 
     /*
     |--------------------------------------------------------------------------
@@ -31,9 +31,9 @@ return array(
     */
     
     'paths' => array(
-        storage_path('thumb'),
+        // storage_path('thumb'),
         storage_path('image'),
-        storage_path('upload')
+        // storage_path('upload')
     ),
 
     /*
@@ -53,6 +53,7 @@ return array(
     */
    
     'templates' => array(
+        'thumb' => 'Modules\Manga\Http\Controllers\Imagefilter\ThumbFilter',
         'small' => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',
