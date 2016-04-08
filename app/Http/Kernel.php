@@ -18,8 +18,7 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \App\Http\Middleware\VerifyCsrfToken::class,
-        // \App\Http\Middleware\SentinelAuth::class,
-        // \App\Http\Middleware\SentinelAdmin::class,
+        \App\Http\Middleware\HttpsProtocol::class,
     ];
 
     /**
@@ -30,6 +29,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'sentinel.auth' => \App\Http\Middleware\SentinelAuth::class,
         'sentinel.admin' => \App\Http\Middleware\SentinelAdmin::class,
+        'sentinel.guest' => \App\Http\Middleware\SentinelGuest::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
