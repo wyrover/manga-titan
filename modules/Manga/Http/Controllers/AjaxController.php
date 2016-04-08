@@ -40,10 +40,14 @@ class AjaxController extends Controller {
 			case 'delete-all-pages':
 				$result = $this->deleteAllPages($request->data);
 				break;
+			case 'change-order':
+				$result = $this->changeOrder($request->data);
+				break;
 			default:
 				$result['message'] = 'undefined client action';
 				$result['success'] = false;
 		}
+		$result['new_csrf'] = csrf_token();
 		return response()->json($result);
 	}
 	

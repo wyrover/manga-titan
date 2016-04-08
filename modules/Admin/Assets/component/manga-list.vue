@@ -22,7 +22,7 @@
 						</div>
 					</td>
 					<td>{{ manga.manga_title }}</td>
-					<td>192</td>
+					<td>{{ manga.manga_pages }}</td>
 					<td>{{ manga.manga_upload }}</td>
 					<td>
 						<a href="#" @click="editManga(manga)"><i class="icon blue pencil"></i></a>

@@ -72,9 +72,10 @@
 	<div class="ui segment form-content">
 		<div v-if="pages.length == 0" class="ui warning message">You doen't have page in this manga. <a href="#upload" @click="upload">Upload Pages</a></div>
 		<ul  v-else class="sortable grid">
-			<li v-for="page in pages" :style="getBackground(page.img_path)">
+			<li v-for="page in pages | orderBy 'page_order'" :style="getBackground(page.img_path)">
 				<div class="ui mini icon buttons">
 					<button @click="deletepage(page)" class="ui red button"><i class="icon trash"></i></button>
+					<button @click="changeOrder(page)" class="ui blue button">{{ page.page_order }}</button>
 				</div>
 			</li>
 		</ul>
@@ -169,6 +170,7 @@
 				this.$dispatch('ajax-action', data);
 			},
 			deleteall: function () {
+				var that = this;
 				var data = {
 					data: {
 						manga_id: this.manga_id
@@ -176,7 +178,32 @@
 					client_action: 'delete-all-pages',
 					callback: 'delete-page-callback'
 				};
-				this.$dispatch('ajax-action', data);
+				var confirm = {
+					title: 'Delete all pages',
+					text: 'Are you sure to delete all pages?',
+					onconfirm: function () {
+						that.$dispatch('ajax-action', data);
+					}
+				};
+				this.$dispatch('app-confirm', confirm);
+			},
+			changeOrder: function (page) {
+				var that = this;
+				var data = {
+					title: 'New Page',
+					type: 'number',
+					value: page.page_order,
+					onconfirm: function (newvalue) {
+						var param = {
+							manga_id: that.manga_id,
+							page_id: page.page_id,
+							page_order: newvalue,
+							page_num: that.page_num
+						};
+						that.$emit('change-order',param);
+					}
+				};
+				this.$dispatch('app-input', data);
 			},
 			cancel: function() {
 				this.$emit('hide-page');
@@ -205,23 +232,32 @@
 				this.$dispatch('app-notify', notify);
 			},
 			'refresh-manga-page-callback': function (data) {
-				var notify = {};
 				if (data.success) {
 					this.pages = data.data.pages;
 					this.max_page = data.data.max_page;
+					this.page_num = data.data.cur_page;
 				} else {
-					notify = {title: 'Failed get data', text: data.message, type:'error'};
+					var notify = {title: 'Failed get data', text: data.message, type:'error'};
 					this.$dispatch('app-notify', notify);
 				}
 			},
 			'flash-page-callback':function (data) {
 				var notify = {};
 				if (data.success) {
-					this.pages = data.data.pages;
-					this.max_page = data.data.max_page;
+					this.$emit('refresh-manga-page-callback', data);
 					notify = {title: 'Save Success', text: data.message};
 				} else {
 					notify = {title: 'Save Failed', text: data.message, type:'error'};
+				}
+				this.$dispatch('app-notify', notify);
+			},
+			'change-order-callback': function (data) {
+				var notify = {};
+				if (data.success) {
+					this.$emit('refresh-manga-page-callback', data);
+					notify = {title: 'Update Success', text: data.message};
+				} else {
+					notify = {title: 'Update Failed', text: data.message, type:'error'};
 				}
 				this.$dispatch('app-notify', notify);
 			},
@@ -235,6 +271,14 @@
 					callback:'flash-page-callback'
 				};
 				this.$dispatch('ajax-action',data);
+			},
+			'change-order': function (data) {
+				var req = {
+					data: data,
+					callback: 'change-order-callback',
+					client_action: 'change-order'
+				};
+				this.$dispatch('ajax-action', req);
 			},
 			'show-page': function (data) {
 				this.manga_id = data.manga_id;

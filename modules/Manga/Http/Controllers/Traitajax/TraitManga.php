@@ -86,6 +86,7 @@ trait TraitManga {
 				'manga_id' => $manga->id,
 				'manga_title' => $manga->title,
 				'manga_desc' => $manga->description,
+				'manga_pages' => $manga->mangapages->count(),
 				'manga_cover' => $manga->thumb_path,
 				'manga_category' => $manga->category->category,
 				'manga_tags' => $manga->getTagsArr(),
@@ -129,9 +130,13 @@ trait TraitManga {
 				$page_order = 1;
 
 			foreach ($data['pages'] as $page) {
+				$extension = File::extension(storage_path('image/'.$page));
+				$newfilename = sprintf('%s-%s.%s',$data['manga_id'], $page_order, $extension);
+				File::move(storage_path('image/'.$page), storage_path('image/'.$newfilename));
+
 				$manga_page = new MangaPage;
 				$manga_page->page_num = $page_order;
-				$manga_page->img_path = $page;
+				$manga_page->img_path = $newfilename;
 
 				$manga->mangapages()->save($manga_page);
 				$page_order++;
@@ -153,12 +158,12 @@ trait TraitManga {
 		$max_page = 0;
 		if ($pages->mangapages->count() > 0) {
 			$max_page = ceil($pages->mangapages->count() / 50);
-			$pages = $pages->mangapages->forPage($page_num, 50);
+			$pages = $pages->mangapages->sortBy('page_num')->forPage($page_num, 50);
 			foreach ($pages as $page) {
 				$tmppage[] = ['page_id' => $page->id, 'page_order' => $page->page_num, 'img_path' => $page->img_path];
 			}
 		}
-		return ['pages' => $tmppage, 'max_page' => $max_page];
+		return ['pages' => $tmppage, 'max_page' => $max_page, 'cur_page' => $page_num];
 	}
 
 	public function getPage($data) {
@@ -178,16 +183,50 @@ trait TraitManga {
 		return $result;
 	}
 
+	public function changeOrder($data) {
+		$result = ['message' => 'failed change order page', 'success' => false];
+		try {
+			$manga = Manga::findOrFail($data['manga_id']);
+			$pagetarget = MangaPage::findOrFail($data['page_id']);
+			$start = intval($data['page_order']);
+			$end = $pagetarget->page_num;
+			$between = [$start, $end];
+			asort($between);
+			$pages = MangaPage::where('id_manga',$manga->id)->whereBetween('page_num', $between)->orderBy('page_num')->get();
+			if ($pages->count() > 0) {
+				foreach ($pages as $page) {
+					if ($page->id == $data['page_id']) {
+						$page->page_num = $data['page_order'];
+					} else {
+						if ($start > $end)
+							$page->page_num--;
+						elseif ($start < $end)
+							$page->page_num++;
+					}
+
+					$page->save();
+				}
+
+				$result['data'] = $this->getFormatedPages($data['manga_id'], isset($data['page_num'])?$data['page_num']:1);
+				$result['message'] = 'Success change order page';
+				$result['success'] = true;
+			}
+		} catch (ModelNotFoundException $e) {
+			$result['message'] = $e->getMessage();
+			$result['success'] = false;
+		}
+		return $result;
+	}
+
 	public function deleteAllPages($data) {
 		$result = ['message' => 'Failed delete page', 'success' => false];
 		try {
-			$manga = Manga::findOrFail($data['manga_id']);
-			if ($manga->mangapages->count() > 0) {
-				foreach ($manga->mangapages as $pages) {
-					File::delete(storage_path('image/') . $pages->img_path);
+			$pages = MangaPage::where('id_manga', $data['manga_id'])->get();
+			if ($pages->count() > 0) {
+				foreach ($pages as $page) {
+					$page->delete();
 				}
 			}
-			$manga->mangapages()->delete();
 
 			$result['message'] = 'Success delete all pages';
 			$result['success'] = true;
@@ -201,9 +240,7 @@ trait TraitManga {
 	public function deletePage($data) {
 		$result = ['message' => 'failed delete page', 'success' => false];
 		try {
-			$page = MangaPage::findOrFail($data['page_id']);
-			File::delete(storage_path('image/') . $page->img_path);
-			$page->delete();
+			MangaPage::destroy($data['page_id']);
 
 			$result['message'] = 'Success delete all pages';
 			$result['success'] = true;
