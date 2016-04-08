@@ -6,61 +6,15 @@
 
 @section('content')
 	<div class="twelve wide column">
-		<manga-list-control></manga-list-control>
-		<manga-list></manga-list>
-		<manga-page></manga-page>
-
-		<div class="ui four column stackable grid manga-grid">
-		<div class="row">
-			<div class="sixteen wide column">
-				<form action="" class="ui form">
-					<div class="three fields">
-						<div class="field"><label for="">Length</label><input type="text"></div>
-						<div class="field"><label for="">Release Date</label><input type="text"></div>
-						<div class="field"><label for="">Keyword</label><input type="text"></div>
-					</div>
-				</form>
-			</div>
-		</div>
-		<div class="row manga-list">
-			<div class="column" v-for="s in 20">
-				<div class="ui manga card fluid">
-					<div class="blurring dimmable image">
-				      <div class="ui dimmer">
-				        <div class="content">
-				          <div class="center">
-				            <div class="ui blue tiny button">Read</div>
-				          </div>
-				        </div>
-				      </div>
-				      <a class="ui left corner red label">
-				        <i class="heart icon"></i>
-				      </a>
-				      <img src="{{ route('imagecache', ['template'=> 'thumb', 'filename' => '001.jpg']) }}">
-				    </div>
-				    <div class="content">
-						<a class="header">Team Hessasda dada asda efa sfa e</a>
-					</div>
-					<div class="extra content">
-						<a><i class="icon unhide"></i>2</a>
-						<a><i class="icon file"></i>1292</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="sixteen wide column">
-			<div class="ui pagination menu">
-				<a class="item" v-for="i in 10">
-					@{{ i + 1}}
-				</a>
-			</div>
-			</div>
-		</div>
+		<div class="ui five column stackable grid manga-grid">
+			<manga-list>
+				<vue-filter></vue-filter>
+				<vue-list></vue-list>
+				<vue-page></vue-page>
+			</manga-list>
 		</div>
 	</div>
 	<div class="four wide column">
-		<manga-filter></manga-filter>
 		<h4 class="ui dividing header">Tags</h4>
 		<div class="ui small tag labels">
 			<a href="" class="ui red label">Yaoi</a>

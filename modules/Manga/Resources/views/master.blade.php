@@ -2,7 +2,7 @@
 
 @section('pageContent')
 @include('manga::menubar')
-<app-page>
+<app-page url-ajax="{{ route('manga.ajax') }}">
 	@yield('content')
 </app-page>
 @include('manga::footer')

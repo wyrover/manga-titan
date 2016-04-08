@@ -7,6 +7,7 @@ use Modules\Manga\Http\Controllers\Traitajax\TraitManga;
 
 class AjaxController extends Controller {
 
+	use TraitAdmin;
 	use TraitManga;
 	
 	public function processor(Request $request)
@@ -42,6 +43,9 @@ class AjaxController extends Controller {
 				break;
 			case 'change-order':
 				$result = $this->changeOrder($request->data);
+				break;
+			case 'filter-manga':
+				$result = $this->filterManga($request->data);
 				break;
 			default:
 				$result['message'] = 'undefined client action';
