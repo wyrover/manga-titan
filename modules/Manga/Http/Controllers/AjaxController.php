@@ -4,6 +4,7 @@ namespace Modules\Manga\Http\Controllers;
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use Modules\Manga\Http\Controllers\Traitajax\TraitManga;
+use Modules\Manga\Http\Controllers\Traitajax\TraitAdmin;
 
 class AjaxController extends Controller {
 

@@ -11,7 +11,14 @@
 		},
 		events: {
 			'refresh-manga-callback': function (data) {
-				//
+				if (data.success) {
+					var datapage = {
+						max_page: data.data.max_page,
+						page_num: data.data.page_num
+					};
+					this.$broadcast('update-list', data.data.manga_list);
+					this.$broadcast('change-page', datapage);
+				}
 			},
 			'refresh-manga-list': function () {
 				var data = {
