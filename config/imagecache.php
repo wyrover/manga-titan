@@ -54,6 +54,7 @@ return array(
    
     'templates' => array(
         'thumb' => 'Modules\Manga\Http\Controllers\Imagefilter\ThumbFilter',
+        'read'  => 'Modules\Manga\Http\Controllers\Imagefilter\ReadFilter',
         'small' => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',
