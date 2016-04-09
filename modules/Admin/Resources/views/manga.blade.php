@@ -1,5 +1,9 @@
 @extends('admin::master')
 
+@section('title')
+@parent - Admin Manga
+@endsection
+
 @section('content')
 <div class="ui grid">
 	<div class="nine wide column form-admin" id="admin-side-left">

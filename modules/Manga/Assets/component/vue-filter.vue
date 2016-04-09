@@ -60,6 +60,11 @@
 				};
 				this.$dispatch('filter-changed', data);
 			}
+		},
+		ready: function () {
+			$('.ui.length.dropdown').dropdown();
+			$('.ui.recent.dropdown').dropdown();
+			$('.ui.tags.dropdown').dropdown();
 		}
 	};
 </script>

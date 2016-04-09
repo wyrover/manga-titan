@@ -245,6 +245,7 @@
 				var notify = {};
 				if (data.success) {
 					this.$emit('refresh-manga-page-callback', data);
+					this.$dispatch('refresh-manga');
 					notify = {title: 'Save Success', text: data.message};
 				} else {
 					notify = {title: 'Save Failed', text: data.message, type:'error'};

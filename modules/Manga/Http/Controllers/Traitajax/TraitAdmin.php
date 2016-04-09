@@ -73,7 +73,7 @@ trait TraitAdmin {
 	}
 
 	public function getManga($data) {
-		$manga_list = Manga::all();
+		$manga_list = Manga::orderBy('created_at','desc')->get();
 		$manga_arr = [];
 		$max_page = ceil($manga_list->count() / 10);
 		if (isset($data['page_num']))

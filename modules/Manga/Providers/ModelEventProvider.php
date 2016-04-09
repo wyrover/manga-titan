@@ -21,6 +21,12 @@ class ModelEventProvider extends ServiceProvider {
 	 */
 	public function boot() {
 		Manga::deleting(function ($manga) {
+			$pages = $manga->mangapages;
+			if ($pages->count() > 0) {
+				foreach ($pages as $page) {
+					$page->delete();
+				}
+			}
 			if ($manga->thumb_path != '') {
 				if (File::exists(storage_path('image/' . $manga->thumb_path)))
 					File::delete(storage_path('image/'. $manga->thumb_path));
@@ -46,6 +52,14 @@ class ModelEventProvider extends ServiceProvider {
 			if ($oldmanga['thumb_path'] != $manga->thumb_path && $oldmanga['thumb_path'] != '') {
 				if (File::exists(storage_path('image/'. $oldmanga['thumb_path'])))
 					File::delete(storage_path('image/'. $oldmanga['thumb_path']));
+			}
+
+		});
+		Manga::saving(function ($manga) {
+			$filename = preg_replace("/[^a-zA-Z0-9.\-]/", "-", $manga->thumb_path);
+			if ($filename != $manga->thumb_path) {
+				File::move(storage_path('image/'.$manga->thumb_path), storage_path('image/'.$filename));
+				$manga->thumb_path = $filename;
 			}
 		});
 	}

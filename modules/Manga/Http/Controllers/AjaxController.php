@@ -27,6 +27,9 @@ class AjaxController extends Controller {
 			case 'get-page':
 				$result = $this->getPage($request->data);
 				break;
+			case 'get-pages-for-view':
+				$result = $this->getPages($request->data);
+				break;
 			case 'add-page':
 				$result = $this->addPage($request->data);
 				break;
