@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UserDefault.php extends Seeder
+class UserDefault extends Seeder
 {
     /**
      * Run the database seeds.
