@@ -34,7 +34,7 @@
 					}
 				});
 
-				// $('.ui.dropdown:not(.addition)').dropdown();
+				$('.ui.dropdown.menubar').dropdown();
 				$('.blurring.image').dimmer({on: 'hover'});
 				$('.ui.rating').rating({maxRating:5});
 				$('.ui.progress').progress();

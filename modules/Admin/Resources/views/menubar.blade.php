@@ -6,7 +6,7 @@
 			<img src="{{ asset('logo.png') }}">
 		</div>
 		<div class="right menu">
-			<div class="ui pointing dropdown link item">
+			<div class="ui pointing dropdown menubar link item">
 				<span class="text">{{ $user->first_name }} {{ $user->last_name }}</span>
 				<i class="dropdown icon"></i>
 				<div class="menu">
