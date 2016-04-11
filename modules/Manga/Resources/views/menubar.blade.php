@@ -12,7 +12,7 @@
 		<a href="{{ route('manga.newest') }}"		class="item {{$routename!='manga.newest'?:'active'}}">Newest <span class="ui green label">123</span></a>
 		<a href="{{ route('manga.favorite') }}"		class="item {{$routename!='manga.favorite'?:'active'}}">My Favorite</a>
 		<div class="right menu">
-			<div class="ui pointing dropdown link item">
+			<div class="ui pointing dropdown menubar link item">
 				<span class="text">{{ $user->first_name }} {{ $user->last_name }}</span>
 				<i class="dropdown icon"></i>
 				<div class="menu">

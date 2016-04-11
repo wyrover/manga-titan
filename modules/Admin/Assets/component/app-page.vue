@@ -66,7 +66,7 @@
 
 					Vue.http.headers.common['X-CSRF-TOKEN'] = resdata.new_csrf;
 
-					that.$broadcast(data.callback, resdata);
+					that.$broadcast(data.callback, resdata, data.name);
 				}, function(failresponse) {
 					swal({
 						title:failresponse.status,
@@ -78,6 +78,7 @@
 			}
 		},
 		events: {
+			'form-new': function (name) {return this.$broadcast('form-new',name);},
 			'new-manga': function() {return this.$broadcast('new-manga');},
 			'edit-manga': function (data) {return this.$broadcast('edit-manga',data);},
 			'refresh-manga': function() {return this.$broadcast('refresh-manga');},

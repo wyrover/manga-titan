@@ -5,16 +5,21 @@ use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use Modules\Manga\Http\Controllers\Traitajax\TraitManga;
 use Modules\Manga\Http\Controllers\Traitajax\TraitAdmin;
+use Modules\Manga\Http\Controllers\Traitajax\TraitUsers;
 
 class AjaxController extends Controller {
 
 	use TraitAdmin;
 	use TraitManga;
+	use TraitUsers;
 	
 	public function processor(Request $request)
 	{
 		$result = [];
 		switch ($request->client_action) {
+			case 'get-user':
+				$result = $this->getUsers($request->data['page_num']);
+				break;
 			case 'get-manga':
 				$result = $this->getManga($request->data);
 				break;
