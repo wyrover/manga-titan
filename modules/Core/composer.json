@@ -1,0 +1,15 @@
+{
+	"name": "pingpong-modules/core",
+	"description": "",
+	"authors": [
+		{
+			"name": "nothing628",
+			"email": "yogyphang@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Modules\\Core\\": ""
+		}
+	}
+}
