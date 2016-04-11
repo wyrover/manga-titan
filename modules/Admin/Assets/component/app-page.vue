@@ -38,7 +38,7 @@
 					title:data.title,
 					text:data.text,
 					type: ("type" in data)?data.type:'success',
-					timer: 1000,
+					timer: 1400,
 					showConfirmButton:false
 				});
 			},
@@ -47,8 +47,6 @@
 					title: data.title,
 					text: data.text,
 					type: 'warning',
-					confirmButtonClass: 'ui button',
-					cancelButtonClass: 'ui button',
 					showCancelButton:true,
 					showConfirmButton:true,
 					closeOnConfirm:false,
@@ -78,6 +76,9 @@
 			}
 		},
 		events: {
+			'form-close': function (name) { return this.$broadcast('form-close', name);},
+			'form-edit': function (data,name) {return this.$broadcast('form-edit', data, name);},
+			'form-refresh': function () {return this.$broadcast('form-refresh');},
 			'form-new': function (name) {return this.$broadcast('form-new',name);},
 			'new-manga': function() {return this.$broadcast('new-manga');},
 			'edit-manga': function (data) {return this.$broadcast('edit-manga',data);},

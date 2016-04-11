@@ -18,10 +18,11 @@
 			></vue-form-title>
 
 			<vue-form-content
+			primary-id="id"
 			:maps="{
 			email: 'Email',
 			created_at: 'Register at',
-			is_active: 'Activated'
+			completed: 'Activated'
 			}"
 			></vue-form-content>
 			<vue-form-footer></vue-form-footer>
@@ -41,7 +42,7 @@
 			></vue-form-title>
 
 			<vue-form-fields>
-				<vue-form-field name="id_user" type="hidden"></vue-form-field>
+				<vue-form-field name="id" type="hidden"></vue-form-field>
 
 				<vue-form-field
 				name="email"
@@ -51,6 +52,7 @@
 
 				<vue-form-field
 				name="password"
+				value="blablablablabla"
 				label="Password"
 				type="password"
 				:maxlength="32"

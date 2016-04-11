@@ -1,21 +1,21 @@
 <template>
 	<div class="field">
 		<label v-if="type_is != 'hidden'">{{ label }}</label>
-		<input :type="type" v-model="value" v-if="type_is == 'input'" :name="name" :maxlength="maxlength" :placeholder="placeholder" :disabled="is_disabled">
+		<input :type="type" v-model="valueReal" v-if="type_is == 'input'" :name="name" :maxlength="maxlength" :placeholder="placeholder" :disabled="is_disabled">
 
 		<div class="ui toggle checkbox" v-if="type_is == 'checkbox'">
-			<input :name="name" type="checkbox" v-model="value">
+			<input :name="name" type="checkbox" v-model="valueReal">
 			<label>{{ placeholder }}</label>
 		</div>
 
-		<input type="hidden" v-model="value" v-if="type_is == 'hidden'" :name="name">
+		<input type="hidden" v-model="valueReal" v-if="type_is == 'hidden'" :name="name">
 	</div>
 </template>
 
 <script>
 	module.exports = {
 		props: {
-			label: { required:true, type:String },
+			label: { required:false, type:String, default:null },
 			type: { required:true, type:String },
 			name: { required:true, type:String },
 			maxlength: { required:false, type:Number, default:255 },
@@ -59,8 +59,27 @@
 		},
 		data:function () {
 			return {
-				is_edit: false
+				is_edit: false,
+				valueReal: null
 			};
+		},
+		events: {
+			'flash-field': function (data) {
+				if (this.disableOnEdit) {
+					this.valueReal = this.value;
+				}
+				if (this.name in data) {
+					this.valueReal = data[this.name];
+				}
+				this.is_edit = true;
+			},
+			'clear-field': function () {
+				this.is_edit = false;
+				this.valueReal = null;
+			}
+		},
+		ready: function () {
+			this.valueReal = this.value;
 		}
 	}
 </script>

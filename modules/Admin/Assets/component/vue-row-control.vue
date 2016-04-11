@@ -1,7 +1,7 @@
 <template>
-	<a href="#" v-if="canDetail"><i class="icon blue detail"></i></a>
-	<a href="#" v-if="canEdit"><i class="icon blue pencil"></i></a>
-	<a href="#" v-if="canDelete"><i class="icon blue trash"></i></a>
+	<a href="#" v-if="canDetail" @click="rowDetail"><i class="icon blue detail"></i></a>
+	<a href="#" v-if="canEdit" @click="rowEdit"><i class="icon blue pencil"></i></a>
+	<a href="#" v-if="canDelete" @click="rowDelete"><i class="icon blue trash"></i></a>
 </template>
 
 <script>

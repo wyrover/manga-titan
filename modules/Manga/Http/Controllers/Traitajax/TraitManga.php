@@ -2,6 +2,7 @@
 
 namespace Modules\Manga\Http\Controllers\Traitajax;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Modules\Manga\Entities\Manga;
 use Modules\Manga\Entities\MangaPage;
 use Modules\Manga\Entities\Category;

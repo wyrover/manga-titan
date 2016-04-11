@@ -41,6 +41,12 @@ class AjaxController extends Controller {
 			case 'save-manga': 
 				$result = $this->saveManga($request->data);
 				break;
+			case 'user-save':
+				$result = $this->saveUser($request->data);
+				break;
+			case 'user-delete':
+				$result = $this->deleteUser($request->data);
+				break;
 			case 'delete-manga':
 				$result = $this->deleteManga($request->data);
 				break;

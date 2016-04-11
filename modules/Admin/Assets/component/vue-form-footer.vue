@@ -1,11 +1,11 @@
 <template>
-	<input name="page-num" type="hidden" v-model="page_num">
+	<input name="page_num" type="hidden" v-model="page_num">
 	<input name="max_page" type="hidden" v-model="max_page">
 	<div class="ui blue segment form-footer">
 		<div class="ui small buttons">
-			<button disabled="" class="ui blue icon button"><i class="left chevron icon"></i></button>
-			<button disabled="" class="ui blue basic button">1</button>
-			<button disabled="" class="ui blue icon button"><i class="right chevron icon"></i></button>
+			<button type="button" :disabled="page_num == 1" class="ui blue icon button"><i class="left chevron icon"></i></button>
+			<button type="button" :disabled="max_page == 0" class="ui blue basic button">1</button>
+			<button type="button" :disabled="page_num == max_page" class="ui blue icon button"><i class="right chevron icon"></i></button>
 		</div>
 	</div>
 </template>
@@ -20,6 +20,20 @@
 			return {
 				max_page: 0,
 				page_num: 0
+			}
+		},
+		methods: {
+			nextPage: function () {
+				if (this.page_num < max_page)
+					this.page_num++;
+
+				this.$dispatch('page-changed', this.page_num);
+			},
+			prevPage: function () {
+				if (this.page_num > 1)
+					this.page_num--;
+
+				this.$dispatch('page-changed', this.page_num);
 			}
 		},
 		events: {
