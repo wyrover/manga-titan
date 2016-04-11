@@ -19,8 +19,6 @@
 				swal({
 					title: data.title,
 					html: '<p><input id="input-confirm" type="' + data.type + '" value="'+ data.value +'"></p>',
-					confirmButtonClass: 'ui button',
-					cancelButtonClass: 'ui button',
 					closeOnConfirm:false,
 					showCancelButton:true,
 					showConfirmButton:true,

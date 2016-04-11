@@ -1,52 +1,65 @@
 @extends('admin::master')
 
+@section('title')
+@parent - Tags
+@endsection
+
 @section('content')
 <div class="ui grid">
 	<div class="nine wide column form-admin" id="admin-side-left">
-		<div class="ui secondary inverted green segment form-title">
-			<div class="title"><i class="icon tags"></i> Tags List</div>
-			<div class="control">
-				<!-- <button class="ui icon small blue button"><i class="icon plus"></i></button> -->
-			</div>
-		</div>
-		<div class="ui segment form-content">
-			<table class="ui very basic table form-table">
-				<thead><tr><th>#</th><th>Tags</th><th></th></tr></thead>
-				<tbody>
-					<tr v-for="i in 5">
-						<td></td>
-						<td>Yuri</td>
-						<td>
-							<a href=""><i class="icon blue pencil"></i></a><a href=""><i class="icon blue trash"></i></a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="ui blue segment form-footer">
-			<div class="ui small buttons">
-				<button class="ui blue icon button"><i class="left chevron icon"></i></button>
-				<button class="ui blue basic button">1</button>
-				<button class="ui blue icon button"><i class="right chevron icon"></i></button>
-			</div>
-		</div>
+		<vue-form
+		name="tag-list"
+		form-target-add="tag-form"
+		form-target-edit="tag-form"
+		:form-action="{get:'get-tags-list', delete: 'tags-delete'}"
+		>
+			<vue-form-title
+			title="Tag List"
+			icon="tags"
+			:button-add="true"
+			:button-refresh="true"
+			:button-delete="true"
+			></vue-form-title>
+			<vue-form-content
+			primary-id="id"
+			:maps="{
+			tag: 'Tag',
+			desc: 'Desc',
+			used: 'Used'
+			}"
+			></vue-form-content>
+			<vue-form-footer></vue-form-footer>
+		</vue-form>
 	</div>
-	<div class="seven wide column ui form form-admin" id="admin-side-right">
-		<div class="pusher"></div>
-		<div class="ui secondary inverted green segment form-title">
-			<div class="title">Edit Tag</div>
-			<div class="control">
-				<button class="ui icon small blue button"><i class="icon save"></i></button>
-				<button class="ui icon small red button"><i class="icon remove"></i></button>
-			</div>
-		</div>
-		<div class="ui segment form-field">
-			<div class="field">
-				<label for="">Tag</label>
-				<input type="text">
-			</div>
-			<div class="field"><label for="">Description</label><textarea name="" id="" cols="30" rows="10"></textarea></div>
-		</div>
+	<div class="seven wide column form-admin" id="admin-side-right">
+		<vue-form
+		name="tag-form"
+		:form-action="{save:'tag-save'}"
+		:is-hidden="true"
+		>
+			<vue-form-title
+			title="Tag Form"
+			icon="tag"
+			:button-save="true"
+			:button-cancel="true"
+			></vue-form-title>
+
+			<vue-form-fields>
+				<vue-form-field name="id" type="hidden"></vue-form-field>
+				<vue-form-field
+				name="tag"
+				label="Tag Name"
+				placeholder="Tag Name"
+				type="text"></vue-form-field>
+
+				<vue-form-field
+				name="desc"
+				label="Description"
+				placeholder="Tag Description"
+				type="textarea"></vue-form-field>
+			</vue-form-fields>
+		</vue-form>
+		@include('admin::empty')
 	</div>
 </div>
 @endsection

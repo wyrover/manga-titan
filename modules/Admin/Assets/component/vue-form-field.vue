@@ -1,6 +1,8 @@
 <template>
 	<div class="field">
 		<label v-if="type_is != 'hidden'">{{ label }}</label>
+		<textarea v-if="type_is == 'textarea'" :name="name" rows="2" v-model="valueReal" :placeholder="placeholder" :disabled="is_disabled"></textarea>
+
 		<input :type="type" v-model="valueReal" v-if="type_is == 'input'" :name="name" :maxlength="maxlength" :placeholder="placeholder" :disabled="is_disabled">
 
 		<div class="ui toggle checkbox" v-if="type_is == 'checkbox'">
@@ -45,6 +47,9 @@
 						break;
 					case 'hidden':
 						newtype = 'hidden';
+						break;
+					case 'textarea':
+						newtype = 'textarea';
 						break;
 					default:
 						newtype = 'undefined';
