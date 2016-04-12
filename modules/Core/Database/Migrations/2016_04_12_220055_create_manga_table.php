@@ -16,6 +16,7 @@ class CreateMangaTable extends Migration {
             $table->increments('id');
             $table->string('category', 40)->unique();
             $table->text('description')->nullable();
+            $table->string('thumb_path',255);
             $table->timestamps();
         });
 
