@@ -1,5 +1,4 @@
 <template>
-	<input type="hidden" name="primaryId" :value="primaryId">
 	<div class="ui segment form-content">
 		<table class="ui very basic selectable table form-table">
 			<thead>
@@ -13,7 +12,7 @@
 				<tr v-for="item in data_list" v-if="data_list.length > 0">
 					<td class="collapsing">
 						<div class="ui fitted checkbox">
-							<input type="checkbox" name="ids[]" :value="item[primaryId]"><label></label>
+							<input type="checkbox" name="id[]" :value="item[primaryId]"><label></label>
 						</div>
 					</td>
 					<td v-for="key in keys" v-html="item[key]"></td>
@@ -35,10 +34,10 @@
 	module.exports = {
 		props: {
 			maps: { required:true, type:Object },
-			primaryId: { required:true, type:String },
 			canDetail: { required:false, type:Boolean, default:true },
 			canEdit: { required:false, type:Boolean, default:true },
 			canDelete: { required:false, type:Boolean, default:true },
+			primaryId: { required:true, type: String }
 		},
 		data:function () {
 			return {

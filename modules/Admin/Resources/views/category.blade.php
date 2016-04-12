@@ -9,9 +9,9 @@
 	<div class="nine wide column form-admin" id="admin-side-left">
 		<vue-form
 		name="tag-list"
-		form-target-add="tag-form"
-		form-target-edit="tag-form"
-		:form-action="{get:'get-tags-list', delete: 'tags-delete'}"
+		form-target-add="category-form"
+		form-target-edit="category-form"
+		:form-action="{get:'get-category', delete: 'delete-category'}"
 		>
 			<vue-form-title
 			title="Category List"
@@ -57,6 +57,12 @@
 				label="Description"
 				placeholder="Category Description"
 				type="textarea"></vue-form-field>
+
+				<vue-file-upload
+				label="Category Thumb"
+				type="image"
+				name="thumb"
+				></vue-file-upload>
 			</vue-form-fields>
 		</vue-form>
 		@include('admin::empty')

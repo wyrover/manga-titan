@@ -86,13 +86,12 @@
 			'form-delete': function () {
 				if (! ("delete" in this.formAction)) return;
 				var submitdata = $('#' + this.id_form).serializeArray();
-				var primaryId = '';
-				var ids = [];
-				$.map(submitdata, function (item, index) {
-					if (item.name == 'ids[]')
+				var ids = [], id = null;
+				$.each(submitdata, function (index, item) {
+					if (item.name == 'id')
+						id = item.value;
+					if (item.name == 'id[]')
 						ids.push(item.value);
-					if (item.name == 'primaryId')
-						primaryId = item.value;
 				});
 				var that = this;
 				var confirm = {
@@ -100,12 +99,13 @@
 					text: "Are you sure to delete selected data?",
 					onconfirm: function () {
 						var param = {
-							data: {},
+							data: {
+								id: (id!=null)?id:ids
+							},
 							client_action:that.formAction.delete,
 							callback:'form-delete-callback',
 							name: that.name
 						};
-						param.data[primaryId] = ids;
 						that.$dispatch('ajax-action', param);
 					}
 				};

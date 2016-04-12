@@ -126,7 +126,6 @@
 				var formData = new FormData();
 				var that = this;
 
-				console.log(images);
 				$.each(images, function (key, item) {
 					formData.append("image[]",item);
 				});
