@@ -14,8 +14,7 @@ class ImageController extends Controller {
 			if (is_array($image)) {
 				$filename = [];
 				foreach ($image as $img) {
-					$originalfname = $img->getClientOriginalName();
-					$newfilename = sprintf('%s-%s', time(), $originalfname);
+					$newfilename = sprintf('%s.%s', time(), $img->getClientOriginalExtension());
 					$filename[$originalfname] = $newfilename;
 
 					$img->move(storage_path('image'), $newfilename);
@@ -23,7 +22,7 @@ class ImageController extends Controller {
 				ksort($filename);
 				$filename = array_values($filename);
 			} else {
-				$filename = sprintf('%s-%s', time(), $image->getClientOriginalName());
+				$filename = sprintf('%s.%s', time(), $image->getClientOriginalExtension());
 
 				$image->move(storage_path('image'), $filename);
 			}
