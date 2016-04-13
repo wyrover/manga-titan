@@ -3,6 +3,7 @@ namespace Modules\Core\Http\Controllers;
 
 use Pingpong\Modules\Routing\Controller;
 use Modules\Core\Http\Controllers\Iface\AjaxResponse;
+use Modules\Core\Entities\Manga;
 
 class TagsController extends Controller implements AjaxResponse {
 	
@@ -20,6 +21,11 @@ class TagsController extends Controller implements AjaxResponse {
 
 	public static function detailData($data) {
 		//
+	}
+
+	public static function sourceData($data) {
+		$datacol = [];
+		return ['data' => $datacol, 'message' => 'source category', 'success' => true];
 	}
 	
 }

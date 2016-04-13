@@ -24,7 +24,6 @@
 			primary-id="id"
 			:maps="{
 			tag: 'Tag',
-			desc: 'Desc',
 			used: 'Used'
 			}"
 			></vue-form-list>

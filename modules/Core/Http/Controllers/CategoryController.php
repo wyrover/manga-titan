@@ -10,7 +10,7 @@ class CategoryController extends Controller implements AjaxResponse {
 	
 	public static function getData($data) {
 		$resdata = [];$coldata = [];
-		$page_num = (array_key_exists('page_num', $data))?$data['page_num']:1;
+		$page_num = (array_key_exists('page_num', $data))?intval($data['page_num']):1;
 
 		$category = Category::orderBy('category')->get();
 		$max_page = ceil($category->count()/20);
@@ -70,6 +70,18 @@ class CategoryController extends Controller implements AjaxResponse {
 
 	public static function detailData($data) {
 		//
+	}
+
+	public static function sourceData($data) {
+		$category = Category::all();
+		$datacol = [];
+		foreach ($category as $cate) {
+			$datacol[] = [
+				'value' => $cate->id,
+				'text' => $cate->category
+			];
+		}
+		return ['data' => $datacol, 'message' => 'source category', 'success' => true];
 	}
 
 }

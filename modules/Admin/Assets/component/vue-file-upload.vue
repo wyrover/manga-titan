@@ -1,7 +1,8 @@
 <template>
 	<div class="field">
 		<label>{{ label }}</label>
-		<img :src="fileurl" class="ui small image" v-if="!multiple && files.length > 0">
+		<a :href="fileurl" target="_blank" v-if="!multiple && !showImage && files.length > 0">{{ files[0] }}</a>
+		<img :src="fileurl" class="ui small image" v-if="!multiple && showImage && files.length > 0">
 		<button class="ui labeled icon button upload" type="button" :disabled="is_disabled" @click="showBrowse">
 			Browse
 			<i class="icon upload"></i>
@@ -21,7 +22,8 @@
 			name: { required:true, type:String },
 			files: { required:false, type:Array, default:function () {return [];} },
 			multiple: { required:false, type:Boolean, default:false },
-			disableOnEdit: { required: false, type:Boolean, default:false }
+			disableOnEdit: { required: false, type:Boolean, default:false },
+			showImage: {required:false, type:Boolean, default:true }
 		},
 		computed: {
 			is_disabled:function () {

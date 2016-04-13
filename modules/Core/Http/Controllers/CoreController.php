@@ -30,10 +30,12 @@ class CoreController extends Controller {
 			'get-category'		=> __NAMESPACE__.'\CategoryController::getData',
 			'save-category'		=> __NAMESPACE__.'\CategoryController::saveData',
 			'delete-category'	=> __NAMESPACE__.'\CategoryController::deleteData',
+			'source-category'	=> __NAMESPACE__.'\CategoryController::sourceData',
 
 			'get-tags'			=> __NAMESPACE__.'\TagsController::getData',
 			'save-tags'			=> __NAMESPACE__.'\TagsController::saveData',
 			'delete-tags'		=> __NAMESPACE__.'\TagsController::deleteData',
+			'source-tags'	=> __NAMESPACE__.'\TagsController::sourceData',
 
 			'get-user'			=> __NAMESPACE__.'\UserController::getData',
 			'save-user'			=> __NAMESPACE__.'\UserController::saveData',

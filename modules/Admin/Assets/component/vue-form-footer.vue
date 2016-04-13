@@ -5,7 +5,7 @@
 		<div class="ui small buttons">
 			<button type="button" :disabled="page_num <= 1" @click="prevPage" class="ui blue icon button"><i class="left chevron icon"></i></button>
 			<button type="button" :disabled="max_page == 0" class="ui blue basic button">1</button>
-			<button type="button" :disabled="page_num == max_page" @click="nextPage" class="ui blue icon button"><i class="right chevron icon"></i></button>
+			<button type="button" :disabled="page_num >= max_page" @click="nextPage" class="ui blue icon button"><i class="right chevron icon"></i></button>
 		</div>
 	</div>
 </template>

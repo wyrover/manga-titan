@@ -11,6 +11,10 @@
 		</div>
 
 		<input type="hidden" v-model="valueReal" v-if="type_is == 'hidden'" :name="name">
+
+		<select :name="name" v-if="type_is == 'dropdown'" class="ui dropdown" :multiple="multiple" :id="name + '-dropdown'">
+			<option v-text="opt.text" :value="opt.value" v-for="opt in options_value"></option>
+		</select>
 	</div>
 </template>
 
@@ -22,9 +26,9 @@
 			name: { required:true, type:String },
 			maxlength: { required:false, type:Number, default:255 },
 			value: { required:false, default:null },
-			multiple: { required:false, type:Boolean, default:null },
+			multiple: { required:false, type:Boolean, default:false },
 			placeholder: { required:false, type:String, default:null },
-			sourceData: { required: false, type:Object },
+			sourceData: { required: false, type:Object },			//{url:, client_action:}
 			disableOnEdit: { required: false, type:Boolean, default:false }
 		},
 		computed: {
@@ -66,10 +70,28 @@
 		data:function () {
 			return {
 				is_edit: false,
-				valueReal: null
+				valueReal: null,
+				options_value: [] //for select if is used
 			};
 		},
 		events: {
+			'refresh-field': function () {
+				if (this.type == 'select' &&
+					"url" in this.sourceData &&
+					"client_action" in this.sourceData) {
+					var that = this;
+					var data = {
+						client_action: this.sourceData.client_action
+					};
+					this.$http.post(this.sourceData.url, data, {emulateJSON:true,timeout: 15000}).then(function (response) {
+						var resdata = $.extend(response.data);
+
+						Vue.http.headers.common['X-CSRF-TOKEN'] = resdata.new_csrf;
+						that.options_value = resdata.data;
+						setTimeout(function () {$('#' + that.name + '-dropdown').dropdown();}, 400);
+					});
+				}
+			},
 			'flash-field': function (data) {
 				if (this.disableOnEdit) {
 					this.valueReal = this.value;
@@ -86,6 +108,7 @@
 		},
 		ready: function () {
 			this.valueReal = this.value;
+			this.$emit('refresh-field');
 		}
 	}
 </script>
