@@ -4,6 +4,7 @@ namespace Modules\Core\Providers;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Entities\Manga;
 use Modules\Core\Entities\MangaPage;
+use Modules\Core\Entities\Category;
 use File;
 
 class ModelEventProvider extends ServiceProvider {
@@ -29,8 +30,8 @@ class ModelEventProvider extends ServiceProvider {
 				}
 			}
 			if ($manga->thumb_path != '') {
-				if (File::exists(storage_path('image/' . $manga->thumb_path)))
-					File::delete(storage_path('image/'. $manga->thumb_path));
+				if (File::exists(storage_path('image/'.$manga->thumb_path)))
+					File::delete(storage_path('image/'.$manga->thumb_path));
 			}
 		});
 		MangaPage::deleting(function ($page) {
@@ -54,13 +55,25 @@ class ModelEventProvider extends ServiceProvider {
 				if (File::exists(storage_path('image/'. $oldmanga['thumb_path'])))
 					File::delete(storage_path('image/'. $oldmanga['thumb_path']));
 			}
-
 		});
 		Manga::saving(function ($manga) {
 			$filename = preg_replace("/[^a-zA-Z0-9.\-]/", "-", $manga->thumb_path);
 			if ($filename != $manga->thumb_path) {
 				File::move(storage_path('image/'.$manga->thumb_path), storage_path('image/'.$filename));
 				$manga->thumb_path = $filename;
+			}
+		});
+		Category::deleting(function ($category) {
+			if ($category->thumb_path != '') {
+				if (File::exists(storage_path('image/'.$category->thumb_path)))
+					File::delete(storage_path('image/'.$category->thumb_path));
+			} 
+		});
+		Category::updating(function ($category) {
+			$old = $category->getOriginal();
+			if ($old['thumb_path'] != $category->thumb_path && $old['thumb_path']!='') {
+				if (File::exists(storage_path('image/'.$old['thumb_path'])))
+					File::delete(storage_path('image/'.$old['thumb_path']));
 			}
 		});
 	}
