@@ -56,7 +56,7 @@
 					}
 				},
 				get: function () {
-					if (this.check_list.length == this.data_list.length)
+					if (this.check_list.length == this.data_list.length && this.data_list.length > 0)
 						return true;
 					return false;
 				}
@@ -76,10 +76,13 @@
 		},
 		events: {
 			'row-flash': function (data) {
-				if (typeof data != 'undefined')
+				if (typeof data != 'undefined') {
+					this.check_list = [];
 					this.data_list = data;
+				}
 			},
 			'row-clear': function () {
+				this.check_list = [];
 				this.data_list = [];
 			},
 			'row-detail': function () {return true;},

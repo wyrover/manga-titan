@@ -34,6 +34,7 @@
 					case 'text':
 					case 'password':
 					case 'number':
+					case 'email':
 						newtype = 'input';
 						break;
 					case 'select':

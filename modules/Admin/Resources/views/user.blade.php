@@ -1,4 +1,4 @@
-`@extends('admin::master')
+@extends('admin::master')
 
 @section('title')
 @parent - Users
@@ -11,7 +11,7 @@
 		name="user-list"
 		form-target-add="user-form"
 		form-target-edit="user-form"
-		:form-action="{get:'get-user', delete: 'user-delete'}"
+		:form-action="{get:'get-user', delete: 'delete-user'}"
 		>
 			<vue-form-title
 			title="Users Control"
@@ -35,7 +35,7 @@
 	<div class="seven wide column form-admin" id="admin-side-right">
 		<vue-form
 		name="user-form"
-		:form-action="{save:'user-save'}"
+		:form-action="{save:'save-user'}"
 		:is-hidden="true"
 		>
 			<vue-form-title
@@ -52,7 +52,7 @@
 				name="email"
 				label="Email"
 				placeholder="Email"
-				type="text"></vue-form-field>
+				type="email"></vue-form-field>
 
 				<vue-form-field
 				name="password"
@@ -67,7 +67,7 @@
 				name="is_active"
 				label="Activate"
 				type="checkbox"
-				placeholder="Register and active user."></vue-form-field>
+				placeholder="Register and active user. (Can't deactive user)"></vue-form-field>
 			</vue-form-fields>
 		</vue-form>
 		@include('admin::empty')
