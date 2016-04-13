@@ -1,8 +1,9 @@
-<?php namespace Modules\Manga\Providers;
+<?php
+namespace Modules\Core\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Modules\Manga\Entities\Manga;
-use Modules\Manga\Entities\MangaPage;
+use Modules\Core\Entities\Manga;
+use Modules\Core\Entities\MangaPage;
 use File;
 
 class ModelEventProvider extends ServiceProvider {

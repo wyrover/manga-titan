@@ -152,7 +152,7 @@ return [
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
         Cartalyst\Tags\TagsServiceProvider::class,
 
-        Modules\Manga\Providers\ModelEventProvider::class,
+        Modules\Core\Providers\ModelEventProvider::class,
     ],
 
     /*

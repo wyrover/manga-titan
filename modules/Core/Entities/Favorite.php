@@ -1,4 +1,5 @@
-<?php namespace Modules\Manga\Entities;
+<?php
+namespace Modules\Core\Entities;
    
 use Illuminate\Database\Eloquent\Model;
 

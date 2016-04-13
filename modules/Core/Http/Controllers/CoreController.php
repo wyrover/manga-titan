@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class CoreController extends Controller {
 
 	protected $actions;
+	protected $defresponse;
 
 	public function __construct() {
 		$this->registerAction();
@@ -15,13 +16,16 @@ class CoreController extends Controller {
 	public function ajaxProcessor(Request $request) {
 		if (array_key_exists($request->client_action, $this->actions)) {
 			$result = call_user_func($this->actions[$request->client_action], $request->data);
-		} else {
-			$result = ['message' => 'Undefined user action', 'success' => false];
+			if (! empty($result)) {
+				$result['new_csrf'] = csrf_token();
+				return response()->json($result);
+			}
 		}
-		return response()->json($result);
+		return response()->json($this->defresponse);
 	}
 
 	public function registerAction() {
+		$this->defresponse = ['message' => 'Undefined user action', 'success' => false, 'new_csrf' => csrf_token()];
 		$this->actions = [
 			'get-category'		=> __NAMESPACE__.'\CategoryController::getData',
 			'save-category'		=> __NAMESPACE__.'\CategoryController::saveData',
