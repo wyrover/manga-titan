@@ -16,7 +16,8 @@
         "erusev/parsedown": "^1.6",
         "pingpong/modules": "~2.0",
         "pingpong/themes": "~2.0",
-        "ircmaxell/password-compat": "1.*"
+        "ircmaxell/password-compat": "1.*",
+	"baum/baum":"~1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

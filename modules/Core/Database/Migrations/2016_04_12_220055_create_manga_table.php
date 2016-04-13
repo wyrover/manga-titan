@@ -57,7 +57,12 @@ class CreateMangaTable extends Migration {
             $table->increments('id');
             $table->integer('id_manga')->unsigned();
             $table->integer('id_users')->unsigned();
-            $table->integer('id_comments')->unsinged()->nullable();
+
+            $table->integer('id_parent')->unsinged()->nullable();
+            $table->integer('lidx')->nullable();
+            $table->integer('ridx')->nullable();
+            $table->integer('depth')->nullable();
+
             $table->text('comment');
             $table->timestamps();
 

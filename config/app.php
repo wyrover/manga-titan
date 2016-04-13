@@ -151,6 +151,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
         Cartalyst\Tags\TagsServiceProvider::class,
+        Baum\Providers\BaumServiceProvider::class,
 
         Modules\Core\Providers\ModelEventProvider::class,
     ],
