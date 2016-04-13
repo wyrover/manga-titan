@@ -38,8 +38,10 @@
 		},
 		events: {
 			'change-page': function (data) {
-				this.page_num = data.page_num;
-				this.max_page = data.max_page;
+				if (typeof data.page_num != 'undefined' && typeof data.max_page != 'undefined') {
+					this.page_num = data.page_num;
+					this.max_page = data.max_page;
+				}
 			}
 		},
 		ready: function () {

@@ -19,8 +19,8 @@
 			label: { required:false, type:String, default:null },
 			type: { required:true, type:String },
 			name: { required:true, type:String },
-			files: { required:false, type:Array, default:[] },
-			multiple: { required:false, type:Boolean, default:null },
+			files: { required:false, type:Array, default:function () {return [];} },
+			multiple: { required:false, type:Boolean, default:false },
 			disableOnEdit: { required: false, type:Boolean, default:false }
 		},
 		computed: {
@@ -62,10 +62,7 @@
 			},
 			uploadexec: function (formData, uploadParams) {
 				var that = this;
-				this.$http({
-					url: '/manga/upload/image',
-					method: 'POST',
-					data: formData,
+				this.$http.post('/manga/upload/image',formData,{
 					upload: uploadParams
 				}).then(function (response) {
 					if (response.data.success) {
@@ -73,10 +70,10 @@
 					} else {
 						that.errorfile++;
 					}
-					this.currentfile++;
+					that.currentfile++;
 				}, function () {
 					that.errorfile++;
-					this.currentfile++;
+					that.currentfile++;
 				});
 			},
 			uploadstart: function (event) {
@@ -117,7 +114,7 @@
 			uploadfinish: function () {
 				if (this.errorfile > 0) {
 					var notify = {title: 'Upload Failed', text: '', type:'error'};
-					notify.text = this.errorfile + ' of ' + this.images + ' files error while upload';
+					notify.text = this.errorfile + ' of ' + this.images.length + ' files error while upload';
 					this.$dispatch('app-notify', notify);
 				}
 				this.images = [];
@@ -128,8 +125,8 @@
 		events: {
 			'flash-field': function (data) {
 				if (! this.multiple && this.name in data) {
-					this.multiple = [];
-					this.multiple.push(data[this.name]);
+					this.files = [];
+					this.files.push(data[this.name]);
 				}
 				this.is_edit = true;
 			},

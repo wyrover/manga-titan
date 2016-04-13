@@ -8,7 +8,7 @@ Vue.component('manga-form',			require('./component/manga-form.vue'));
 Vue.component('manga-list',			require('./component/manga-list.vue'));
 Vue.component('manga-page',			require('./component/manga-page.vue'));
 Vue.component('vue-form',			require('./component/vue-form.vue'));
-Vue.component('vue-form-content',	require('./component/vue-form-content.vue'));
+Vue.component('vue-form-list',		require('./component/vue-form-list.vue'));
 Vue.component('vue-form-field',		require('./component/vue-form-field.vue'));
 Vue.component('vue-form-fields',	require('./component/vue-form-fields.vue'));
 Vue.component('vue-form-footer',	require('./component/vue-form-footer.vue'));

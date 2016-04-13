@@ -3,7 +3,7 @@
 		<table class="ui very basic selectable table form-table">
 			<thead>
 				<tr>
-					<th><div class="ui fitted checkbox"><input type="checkbox"> <label></label></div></th>
+					<th><div class="ui fitted checkbox"><input type="checkbox" v-model="checkall"> <label></label></div></th>
 					<th v-for="col in columns">{{ col }}</th>
 					<th></th>
 				</tr>
@@ -12,7 +12,7 @@
 				<tr v-for="item in data_list" v-if="data_list.length > 0">
 					<td class="collapsing">
 						<div class="ui fitted checkbox">
-							<input type="checkbox" name="id[]" :value="item[primaryId]"><label></label>
+							<input type="checkbox" name="id[]" :value="item[primaryId]" v-model="check_list"><label></label>
 						</div>
 					</td>
 					<td v-for="key in keys" v-html="item[key]"></td>
@@ -30,7 +30,6 @@
 </template>
 
 <script>
-	/// { key: '', value: '', filter: '' }
 	module.exports = {
 		props: {
 			maps: { required:true, type:Object },
@@ -42,9 +41,26 @@
 		data:function () {
 			return {
 				data_list: [],
+				check_list: []
 			};
 		},
 		computed: {
+			checkall: {
+				set: function (val) {
+					this.check_list = [];
+					if (val) {
+						var that = this;
+						$.each (this.data_list, function (index, item) {
+							that.check_list.push(item[that.primaryId]);
+						});
+					}
+				},
+				get: function () {
+					if (this.check_list.length == this.data_list.length)
+						return true;
+					return false;
+				}
+			},
 			columns: function () {
 				var col = $.map(this.maps, function (item, index) {
 					return item;
@@ -60,7 +76,8 @@
 		},
 		events: {
 			'row-flash': function (data) {
-				this.data_list = data;
+				if (typeof data != 'undefined')
+					this.data_list = data;
 			},
 			'row-clear': function () {
 				this.data_list = [];

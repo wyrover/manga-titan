@@ -63,8 +63,8 @@
 			},
 			'form-refresh-callback': function (data, name) {
 				if (data.success && name == this.name) {
-					this.$broadcast('row-flash', data.data.data);
 					this.$broadcast('change-page', {page_num:data.data.page_num, max_page:data.data.max_page});
+					this.$broadcast('row-flash', data.data.data);
 				}
 			},
 			////////////////////////////////////////////////////////////////////////////
