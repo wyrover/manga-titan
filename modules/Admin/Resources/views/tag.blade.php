@@ -20,14 +20,14 @@
 			:button-refresh="true"
 			:button-delete="true"
 			></vue-form-title>
-			<vue-form-content
+			<vue-form-list
 			primary-id="id"
 			:maps="{
 			tag: 'Tag',
 			desc: 'Desc',
 			used: 'Used'
 			}"
-			></vue-form-content>
+			></vue-form-list>
 			<vue-form-footer></vue-form-footer>
 		</vue-form>
 	</div>

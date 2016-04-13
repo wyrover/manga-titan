@@ -1,4 +1,4 @@
-@extends('admin::master')
+`@extends('admin::master')
 
 @section('title')
 @parent - Users
@@ -21,14 +21,14 @@
 			:button-delete="true"
 			></vue-form-title>
 
-			<vue-form-content
+			<vue-form-list
 			primary-id="id"
 			:maps="{
 			email: 'Email',
 			created_at: 'Register at',
 			completed: 'Activated'
 			}"
-			></vue-form-content>
+			></vue-form-list>
 			<vue-form-footer></vue-form-footer>
 		</vue-form>
 	</div>

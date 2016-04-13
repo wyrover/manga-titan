@@ -15,13 +15,13 @@
 			:button-refresh="true"
 			:button-delete="true"></vue-form-title>
 
-			<vue-form-content
+			<vue-form-list
 			:maps="{
 			comments: 'Comment',
 			manga: 'Manga',
 			user: 'User',
 			created_at: 'Comment at'
-			}"></vue-form-content>
+			}"></vue-form-list>
 			<vue-form-footer></vue-form-footer>
 		</vue-form>
 	</div>

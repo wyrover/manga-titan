@@ -8,7 +8,7 @@
 <div class="ui grid">
 	<div class="nine wide column form-admin" id="admin-side-left">
 		<vue-form
-		name="tag-list"
+		name="category-list"
 		form-target-add="category-form"
 		form-target-edit="category-form"
 		:form-action="{get:'get-category', delete: 'delete-category'}"
@@ -20,21 +20,21 @@
 			:button-refresh="true"
 			:button-delete="true"
 			></vue-form-title>
-			<vue-form-content
+			<vue-form-list
 			primary-id="id"
 			:maps="{
-			tag: 'Category',
+			category: 'Category',
 			desc: 'Desc',
 			used: 'Used'
 			}"
-			></vue-form-content>
+			></vue-form-list>
 			<vue-form-footer></vue-form-footer>
 		</vue-form>
 	</div>
 	<div class="seven wide column form-admin" id="admin-side-right">
 		<vue-form
 		name="category-form"
-		:form-action="{save:'category-save'}"
+		:form-action="{save:'save-category'}"
 		:is-hidden="true"
 		>
 			<vue-form-title
@@ -47,7 +47,7 @@
 			<vue-form-fields>
 				<vue-form-field name="id" type="hidden"></vue-form-field>
 				<vue-form-field
-				name="tag"
+				name="category"
 				label="Category Name"
 				placeholder="Category Name"
 				type="text"></vue-form-field>
