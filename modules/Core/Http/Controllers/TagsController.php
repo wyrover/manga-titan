@@ -24,8 +24,15 @@ class TagsController extends Controller implements AjaxResponse {
 	}
 
 	public static function sourceData($data) {
+		$tags = Manga::allTags()->get();
 		$datacol = [];
-		return ['data' => $datacol, 'message' => 'source category', 'success' => true];
+		foreach ($tags as $tag) {
+			$datacol[] = [
+				'value' => $tag->name,
+				'text' => $tag->name
+			];
+		}
+		return ['data' => $datacol, 'message' => 'source tags', 'success' => true];
 	}
 	
 }

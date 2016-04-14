@@ -33,6 +33,22 @@
 				return 'form-' + this.name;
 			}
 		},
+		methods: {
+			getFormValues: function () {
+				var submitdata = $('#' + this.id_form).serializeArray();
+				var objectsubmit = {};
+				$.each(submitdata, function (index, item) {
+					if (item.name.endsWith("[]") && ! (item.name.replace('[]','') in objectsubmit))
+						objectsubmit[item.name.replace('[]','')] = [];
+					if (item.name.endsWith("[]")) 
+						objectsubmit[item.name.replace('[]','')].push(item.value);
+					else 
+						objectsubmit[item.name] = item.value;
+				});
+
+				return objectsubmit;
+			}
+		},
 		events: {
 			'form-delete-callback': function (data, name) {
 				if (this.name == name) {
@@ -85,14 +101,7 @@
 			},
 			'form-delete': function () {
 				if (! ("delete" in this.formAction)) return;
-				var submitdata = $('#' + this.id_form).serializeArray();
-				var ids = [], id = null;
-				$.each(submitdata, function (index, item) {
-					if (item.name == 'id')
-						id = item.value;
-					if (item.name == 'id[]')
-						ids.push(item.value);
-				});
+				var objectsubmit = this.getFormValues();
 				var that = this;
 				var confirm = {
 					title: "Delete Selected",
@@ -100,7 +109,7 @@
 					onconfirm: function () {
 						var param = {
 							data: {
-								id: (id!=null)?id:ids
+								id: objectsubmit.id
 							},
 							client_action:that.formAction.delete,
 							callback:'form-delete-callback',
@@ -116,11 +125,7 @@
 			},
 			'form-save': function () {
 				if (! ("save" in this.formAction)) return;
-				var submitdata = $('#' + this.id_form).serializeArray();
-				var objectsubmit = {};
-				$.map(submitdata, function (item, index) {
-					objectsubmit[item.name] = item.value;
-				});
+				var objectsubmit = this.getFormValues();
 
 				var data = {
 					data: objectsubmit,

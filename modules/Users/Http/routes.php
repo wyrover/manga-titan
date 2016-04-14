@@ -2,9 +2,7 @@
 
 Route::group(['prefix' => 'users', 'namespace' => 'Modules\Users\Http\Controllers'], function()
 {
-	Route::get('/', function () {
-		return redirect()->route('user.login');
-	});
+	Route::get('/', ['as' => 'user.redirect', 'uses' => 'UsersController@redirect']);
 
 	Route::group(['middleware' => 'sentinel.guest'], function () {
 		Route::get('login', ['uses' => 'UsersController@index', 'as' => 'user.login']);

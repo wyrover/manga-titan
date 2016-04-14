@@ -115,6 +115,8 @@
   border: none medium;
   box-shadow: none;
   padding: 1em;
+  max-height: calc(100% - 48px);
+  overflow: auto;
 }
 
 .form-admin .ui.form {
@@ -129,6 +131,9 @@
 
 #admin-menu {
   margin-bottom: 0;
+  border: none medium;
+  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0;
 }
 
 #admin-grid {

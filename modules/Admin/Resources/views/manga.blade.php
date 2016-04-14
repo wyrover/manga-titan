@@ -35,7 +35,7 @@
 		<vue-form
 		name="manga-form"
 		:form-action="{save:'save-manga'}"
-		:is-hidden="false"
+		:is-hidden="true"
 		>
 			<vue-form-title
 			title="Manga Form"
@@ -58,24 +58,24 @@
 				placeholder="Description"
 				type="textarea"></vue-form-field>
 
-				<vue-form-field
+				<vue-input-select
 				name="category"
 				label="Category"
-				type="select"
-				:source-data="{url:'{{route('core.ajax')}}', client_action: 'source-category'}"></vue-form-field>
+				:allow-add-value = "true"
+				:source-data="{url:'{{route('core.ajax')}}', client_action: 'source-category'}"></vue-input-select>
 
-				<vue-form-field
+				<vue-input-select
 				name="tags"
 				label="Tags"
-				type="select"
 				:multiple="true"
-				:source-data="{url:'{{route('core.ajax')}}', client_action: 'source-tags'}"></vue-form-field>
+				:allow-add-value = "true"
+				:source-data="{url:'{{route('core.ajax')}}', client_action: 'source-tags'}"></vue-input-select>
 
 				<vue-file-upload
 				label="Manga Thumbnail"
 				type="image"
 				name="thumb"
-				:show-image = "false"
+				:show-image = "true"
 				></vue-file-upload>
 			</vue-form-fields>
 		</vue-form>

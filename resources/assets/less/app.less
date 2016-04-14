@@ -91,6 +91,8 @@
 	.form-field {
 		.mt-segment;
 		padding:1em;
+		max-height: ~"calc(100% - 48px)";
+		overflow: auto;
 	}
 	.ui.form {
 		background-color:white;
@@ -109,6 +111,9 @@
 }
 #admin-menu {
 	margin-bottom:0;
+	border:none medium;
+	border-bottom: 1px solid rgba(34,36,38,.15);
+	border-radius: 0;
 }
 #admin-grid {
 	position:absolute;

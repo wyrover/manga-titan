@@ -13,6 +13,10 @@ class UsersController extends Controller {
 	
 	public $redirect_to = 'manga';
 
+	public function redirect() {
+		return redirect()->route('user.login');
+	}
+
 	public function index(){
 		return view('users::login');
 	}

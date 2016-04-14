@@ -35,7 +35,7 @@ class CoreController extends Controller {
 			'get-tags'			=> __NAMESPACE__.'\TagsController::getData',
 			'save-tags'			=> __NAMESPACE__.'\TagsController::saveData',
 			'delete-tags'		=> __NAMESPACE__.'\TagsController::deleteData',
-			'source-tags'	=> __NAMESPACE__.'\TagsController::sourceData',
+			'source-tags'		=> __NAMESPACE__.'\TagsController::sourceData',
 
 			'get-user'			=> __NAMESPACE__.'\UserController::getData',
 			'save-user'			=> __NAMESPACE__.'\UserController::saveData',
@@ -46,7 +46,7 @@ class CoreController extends Controller {
 
 			'get-manga'			=> __NAMESPACE__.'\MangaController::getData',
 			'save-manga'		=> __NAMESPACE__.'\MangaController::saveData',
-			'delete-manga'		=> __NAMESPACE__.'\MangaController::deleteManga',
+			'delete-manga'		=> __NAMESPACE__.'\MangaController::deleteData',
 			
 			'get-page'			=> __NAMESPACE__.'\PageController::getData',
 			'save-page'			=> __NAMESPACE__.'\PageController::saveData',
