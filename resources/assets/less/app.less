@@ -1,6 +1,7 @@
 @blue-light-1: lighten(@blue,10%);
 @blue : #2196f3;
 @blue-darken-1: darken(@blue,10%);
+@green : #21BA45;
 
 @my-font-family: "Open Sans";
 .form-admin {
@@ -9,6 +10,7 @@
 		padding-top:0.5em;
 		padding-bottom:0.5em;
 		.mt-segment;
+		border-bottom:2px solid @green;
 		> .title {
 			min-height:34px;
 			padding-top:0.5em;
@@ -26,7 +28,7 @@
 	}
 	.form-content {
 		.mt-segment;
-		height: ~"calc(100% - 98px)";
+		height: ~"calc(100% - 100px)";
 		padding:0;
 		overflow-y:auto;
 		> .ui.table.form-table {

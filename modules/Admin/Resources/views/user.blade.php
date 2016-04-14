@@ -28,6 +28,7 @@
 			created_at: 'Register at',
 			completed: 'Activated'
 			}"
+			:can-detail="false"
 			></vue-form-list>
 			<vue-form-footer></vue-form-footer>
 		</vue-form>

@@ -20,8 +20,9 @@
 			name: { required: true, type:String },
 			formTargetAdd: { required: false, type:String, default:null },
 			formTargetEdit: { required: false, type:String, default:null },
-			formAction: { required: false, type:Object },		//get, delete, save
-			isHidden: { required: false, type:Boolean }
+			formAction: { required: false, type:Object, default:function () {return {};} },		//get, delete, save
+			isHidden: { required: false, type:Boolean },
+			optionalParam: { required:false, type:Object, default:function () {return {};} }
 		},
 		data: function () {
 			return {
@@ -89,10 +90,12 @@
 			},
 			'form-refresh': function () {
 				if (! ("get" in this.formAction)) return;
+				var param = {
+					page_num: (this.page_num == 0)?1:this.page_num,
+				};
+				param = $.extend({}, param, this.optionalParam);
 				var data = {
-					data: {
-						page_num: (this.page_num == 0)?1:this.page_num
-					},
+					data: param,
 					client_action: this.formAction.get,
 					callback: 'form-refresh-callback',
 					name: this.name
@@ -152,6 +155,12 @@
 				if (this.name == name)
 					this.$emit('form-cancel');
 			},
+			'form-detail': function (data, name) {
+				if (this.name == name) {
+					this.$emit('form-refresh');
+					this.isHidden = false;
+				}
+			},
 			///////////////////////////////////////////////////////////////////////////////
 			'row-delete': function (data) {
 				if (!("delete" in this.formAction)) return;
@@ -172,10 +181,12 @@
 				this.$dispatch('app-confirm', confirm);
 			},
 			'row-edit': function (data) {
+				if (this.formTargetEdit == null) return;
 				this.$dispatch('form-edit', data, this.formTargetEdit);
 			},
 			'row-detail': function (data) {
-				var data2 = null; //I don't have idea for this
+				if (this.formTargetDetail == null) return;
+				this.$dispatch('form-detail', data, this.formTargetDetail);
 			},
 			/////////////////////////////////////////////////////////////////////////////////
 			'page-changed': function (page_num) {

@@ -27,6 +27,7 @@
 			desc: 'Desc',
 			used: 'Used'
 			}"
+			:can-detail="false"
 			></vue-form-list>
 			<vue-form-footer></vue-form-footer>
 		</vue-form>

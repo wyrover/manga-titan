@@ -10,7 +10,7 @@
 		},
 		watch: {
 			'value' : function (val, oldval) {
-				$('#' + this.name + '-progress').progress({value:val});
+				$('#' + this.name + '-progress').progress({percent:val});
 			}
 		},
 		data: function () {
@@ -21,7 +21,7 @@
 		events: {
 			'progress-set' : function (value, name) {
 				if (this.name == name)
-					this.value = value;
+					this.value = parseInt(value);
 			},
 			'progress-reset' : function (name) {
 				if (this.name == name)

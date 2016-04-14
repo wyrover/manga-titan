@@ -1,5 +1,5 @@
 <template>
-	<div class="field">
+	<div class="field" v-show="isShow">
 		<label>{{ label }}</label>
 		<a :href="fileurl" target="_blank" v-if="!multiple && !showImage && files.length > 0">{{ files[0] }}</a>
 		<img :src="fileurl" class="ui small image" v-if="!multiple && showImage && files.length > 0">
@@ -9,7 +9,7 @@
 		</button>
 		<input type="file" :accept="accept" :id="name + '-upload-input'" :multiple = "multiple">
 		<vue-progress-bar :name="name"></vue-progress-bar>
-		<input type="hidden" v-if="multiple && files.length > 0" v-for="file in files" :name="name + '[]'" :value="file">
+		<input type="hidden" v-if="multiple && files.length > 0" v-for="file in files" track-by="$index" :name="name + '[]'" :value="file">
 		<input type="hidden" v-if="!multiple && files.length > 0" :name="name" :value="files[0]">
 	</div>
 </template>
@@ -23,7 +23,8 @@
 			files: { required:false, type:Array, default:function () {return [];} },
 			multiple: { required:false, type:Boolean, default:false },
 			disableOnEdit: { required: false, type:Boolean, default:false },
-			showImage: {required:false, type:Boolean, default:true }
+			showImage: {required:false, type:Boolean, default:true },
+			isShow: { required:false, type:Boolean, default:true}
 		},
 		computed: {
 			is_disabled:function () {
@@ -84,8 +85,8 @@
 				this.errorfile = 0;
 				this.files = [];
 
-				this.$broadcast('progress-show', this.name);
-				this.$broadcast('progress-reset', this.name);
+				this.$emit('display-progress','progress-show');
+				this.$emit('display-progress','progress-reset');
 
 				this.uploadnext();
 			},
@@ -100,15 +101,15 @@
 					if (this.images.length == 1) {
 						upload = {
 							onload: function (e)  {
-								that.$broadcast('progress-complete', that.name);
+								that.$emit('display-progress', 'progress-complete');
 							},
 							onprogress: function(e) {
 								var val = e.loaded/e.total * 100;
-								that.$broadcast('progress-set', val, that.name);
+								that.$emit('display-progress', 'progress-set', val);
 							}
 						};
 					} else {
-						this.$broadcast('progress-set', (this.currentfile / this.images.length * 100), this.name);
+						this.$emit('display-progress', 'progress-set', (this.currentfile / this.images.length * 100));
 					}
 					this.uploadexec(formData, upload);
 				}
@@ -120,7 +121,9 @@
 					this.$dispatch('app-notify', notify);
 				}
 				this.images = [];
-				this.$broadcast('progress-hide', this.name);
+				this.$emit('display-progress','progress-complete');
+				this.$emit('display-progress','progress-hide');
+				this.$dispatch('upload-complete');
 				$('#' + this.name + '-upload-input').val();
 			}
 		},
@@ -134,6 +137,21 @@
 			},
 			'clear-field': function () {
 				this.files = [];
+			},
+			'input-field': function () {
+				$('#' + this.name + '-upload-input').trigger('click');
+			},
+			'display-progress': function(command, value) {
+				switch (command) {
+					case 'progress-set':
+						this.$broadcast(command, value, this.name);break;
+					case 'progress-complete':
+					case 'progress-hide':
+					case 'progress-show':
+					case 'progress-reset':
+						this.$broadcast(command, this.name);break;
+				}
+				this.$dispatch('upload-progress',command,value);
 			}
 		},
 		ready: function () {

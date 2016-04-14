@@ -18,7 +18,7 @@
 			name: { required:true, type:String },
 			multiple: { required:false, type:Boolean, default:false },
 			sourceData: { required: false, type:Object },
-			allowAddValue: { required: false, type:Boolean, default:false },
+			allowAddValue: { required: false, type:Boolean, default:false }
 		},
 		data: function () {
 			return {

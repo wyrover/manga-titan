@@ -78,6 +78,7 @@
 			'form-edit': function (data,name) {return this.$broadcast('form-edit', data, name);},
 			'form-refresh': function () {return this.$broadcast('form-refresh');},
 			'form-new': function (name) {return this.$broadcast('form-new',name);},
+			'form-detail': function (data, name) {return this.$broadcast('form-detail',data, name);},
 			'new-manga': function() {return this.$broadcast('new-manga');},
 			'edit-manga': function (data) {return this.$broadcast('edit-manga',data);},
 			'refresh-manga': function() {return this.$broadcast('refresh-manga');},

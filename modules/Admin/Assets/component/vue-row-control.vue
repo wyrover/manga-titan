@@ -1,7 +1,13 @@
+<style>
+	.ui.link {
+		cursor: pointer;
+	}
+</style>
+
 <template>
-	<a href="#" v-if="canDetail" @click="rowDetail"><i class="icon blue detail"></i></a>
-	<a href="#" v-if="canEdit" @click="rowEdit"><i class="icon blue pencil"></i></a>
-	<a href="#" v-if="canDelete" @click="rowDelete"><i class="icon blue trash"></i></a>
+	<span class="ui link" v-if="canDetail" @click="rowDetail"><i class="list" :class="class"></i></span>
+	<span class="ui link" v-if="canEdit" @click="rowEdit"><i class="pencil" :class="class"></i></span>
+	<span class="ui link" v-if="canDelete" @click="rowDelete"><i class="trash" :class="class"></i></span>
 </template>
 
 <script>
@@ -10,7 +16,8 @@
 			canDetail: { required:false, type:Boolean, default:true },
 			canEdit: { required:false, type:Boolean, default:true },
 			canDelete: { required:false, type:Boolean, default:true },
-			dataRow: { required:true, type: Object }
+			dataRow: { required:true, type: Object },
+			class: { required:false, type:Array, default: function () {return ['icon','blue'];} }
 		},
 		methods: {
 			rowDetail: function () {

@@ -18,3 +18,4 @@ Vue.component('vue-row-control',	require('./component/vue-row-control.vue'));
 Vue.component('vue-file-upload',	require('./component/vue-file-upload.vue'));
 Vue.component('vue-progress-bar',	require('./component/vue-progress-bar.vue'));
 Vue.component('vue-input-select',	require('./component/vue-input-select.vue'));
+Vue.component('vue-media',			require('./component/vue-media.vue'));

@@ -14,6 +14,11 @@ class AdminController extends Controller {
 		return view('admin::manga');
 	}
 
+	public function page($id_manga)
+	{
+		return view('admin::page', ['id_manga' => $id_manga]);
+	}
+
 	public function tag()
 	{
 		return view('admin::tag');

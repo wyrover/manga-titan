@@ -1,5 +1,5 @@
 <template>
-<div class="ui secondary inverted green segment form-title">
+<div class="ui secondary segment form-title">
 	<div class="title"><i class="icon" :class="icon"></i> {{ title }}</div>
 	<div class="control">
 		<div class="ui small icon buttons">

@@ -21,7 +21,6 @@
 			:button-delete="true"
 			></vue-form-title>
 			<vue-form-list
-			primary-id="id"
 			:maps="{
 			title: 'Manga',
 			page: 'Page Count',
@@ -80,11 +79,6 @@
 			</vue-form-fields>
 		</vue-form>
 		@include('admin::empty')
-	</div>
-</div>
-<div class="ui grid grid-fade">
-	<div class="sixteen wide column form-admin">
-		<!-- <manga-page form-id="manga-page" :is-hidden="true"></manga-page> -->
 	</div>
 </div>
 @endsection
