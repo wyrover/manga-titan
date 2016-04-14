@@ -4,6 +4,7 @@ use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use File;
 use Response;
+use Uuid;
 
 class ImageController extends Controller {
 
@@ -14,7 +15,7 @@ class ImageController extends Controller {
 			if (is_array($image)) {
 				$filename = [];
 				foreach ($image as $img) {
-					$newfilename = sprintf('%s.%s', time(), $img->getClientOriginalExtension());
+					$newfilename = sprintf('%s.%s', Uuid::generate(4), $img->getClientOriginalExtension());
 					$filename[$originalfname] = $newfilename;
 
 					$img->move(storage_path('image'), $newfilename);
@@ -22,7 +23,7 @@ class ImageController extends Controller {
 				ksort($filename);
 				$filename = array_values($filename);
 			} else {
-				$filename = sprintf('%s.%s', time(), $image->getClientOriginalExtension());
+				$filename = sprintf('%s.%s', Uuid::generate(4), $image->getClientOriginalExtension());
 
 				$image->move(storage_path('image'), $filename);
 			}
