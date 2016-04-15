@@ -44,7 +44,7 @@
 	}
 	.sortable.grid li .dimm {
 		position: absolute;
-		top:0px;
+		top:30px;
 		bottom: 0px;
 		left:0px;
 		right:0px;
@@ -91,7 +91,7 @@
 				<tr v-for="item in data_list" v-if="data_list.length > 0">
 					<td class="collapsing">
 						<div class="ui fitted checkbox">
-							<input type="checkbox" name="id[]" :value="item[primaryId]" v-model="check_list"><label></label>
+							<input type="checkbox" :name="primaryId + '[]'" :value="item[primaryId]" v-model="check_list"><label></label>
 						</div>
 					</td>
 					<td v-for="key in keys" v-html="item[key]"></td>
@@ -109,7 +109,7 @@
 		<ul class="sortable mini grid" v-if="listType=='grid' && data_list.length > 0">
 			<li v-for="item in data_list" :style="getBackground(item[maps.image])">
 				<div class="content"><span class="header" >{{ item[maps.title] }}</span></div>
-				<input type="checkbox" name="id[]" :value="item[primaryId]" v-model="check_list">
+				<input type="checkbox" :name="primaryId + '[]'" :value="item[primaryId]" v-model="check_list">
 				<div class="dimm">
 					<i class="icon huge checkmark"></i>
 				</div>

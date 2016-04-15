@@ -74,6 +74,7 @@
 			}
 		},
 		events: {
+			'form-save': function(data, name) { return this.$broadcast('form-save', data, name);},
 			'form-close': function (name) { return this.$broadcast('form-close', name);},
 			'form-edit': function (data,name) {return this.$broadcast('form-edit', data, name);},
 			'form-refresh': function () {return this.$broadcast('form-refresh');},

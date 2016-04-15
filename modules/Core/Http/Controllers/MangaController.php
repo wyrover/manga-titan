@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Core\Http\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Pingpong\Modules\Routing\Controller;
 use Modules\Core\Http\Controllers\Iface\AjaxResponse;
 use Modules\Core\Entities\Manga;
@@ -10,7 +11,7 @@ class MangaController extends Controller implements AjaxResponse {
 	
 	public static function getData($data) {
 		$resdata = [];$coldata = [];
-		$page_num = (array_key_exists('page_num', $data))?intval($data['page_num']):1;
+		$page_num = (array_key_exists('page_num', $data) && intval($data['page_num']) > 0)?intval($data['page_num']):1;
 
 		$manga = Manga::orderBy('created_at')->get();
 		$max_page = ceil($manga->count()/20);

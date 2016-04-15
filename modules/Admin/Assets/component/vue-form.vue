@@ -11,6 +11,7 @@
 <template>
 	<form :id="id_form" :name="id_form" class="ui form" v-show="!isHidden" transition="expand" method="post">
 		<slot></slot>
+		<input type="hidden" :name="item.name" :value="item.value" v-for="item in additionalParam">
 	</form>
 </template>
 
@@ -21,17 +22,29 @@
 			formTargetAdd: { required: false, type:String, default:null },
 			formTargetEdit: { required: false, type:String, default:null },
 			formAction: { required: false, type:Object, default:function () {return {};} },		//get, delete, save
+			hideOnSave: { required: false, type:Boolean, default: true },
 			isHidden: { required: false, type:Boolean },
 			optionalParam: { required:false, type:Object, default:function () {return {};} }
 		},
 		data: function () {
-			return {
-				page_num: 0
-			};
+			return {};
 		},
 		computed: {
 			id_form: function () {
 				return 'form-' + this.name;
+			},
+			additionalParam: function () {
+				var param = [];
+				$.each(this.optionalParam, function (key, item) {
+					if (typeof item == 'Array') {
+						$.each(item, function (index, value) {
+							param.push({name:key + '[]', value:value});
+						});
+					} else {
+						param.push({name:key, value:item});
+					}
+				});
+				return param;
 			}
 		},
 		methods: {
@@ -71,7 +84,7 @@
 						var notify = {title: 'Save Success', text: data.message};
 						this.$dispatch('form-refresh');
 						this.$dispatch('app-notify', notify);
-						this.$emit('form-cancel', true);
+						if (this.hideOnSave) this.$emit('form-cancel');
 					} else {
 						var notify = {title: 'Save Failed', text: data.message, type:'error'};
 						this.$dispatch('app-notify', notify);
@@ -90,10 +103,7 @@
 			},
 			'form-refresh': function () {
 				if (! ("get" in this.formAction)) return;
-				var param = {
-					page_num: (this.page_num == 0)?1:this.page_num,
-				};
-				param = $.extend({}, param, this.optionalParam);
+				var param = this.getFormValues();
 				var data = {
 					data: param,
 					client_action: this.formAction.get,
@@ -126,9 +136,12 @@
 			'form-cancel': function () {
 				this.isHidden = true;
 			},
-			'form-save': function () {
+			'form-save': function (newparam, name) {
 				if (! ("save" in this.formAction)) return;
+
 				var objectsubmit = this.getFormValues();
+				if (typeof name != 'undefined' && typeof newparam != 'undefined' && this.name == name)
+					objectsubmit = $.extend({},objectsubmit, newparam);
 
 				var data = {
 					data: objectsubmit,
@@ -189,8 +202,7 @@
 				this.$dispatch('form-detail', data, this.formTargetDetail);
 			},
 			/////////////////////////////////////////////////////////////////////////////////
-			'page-changed': function (page_num) {
-				this.page_num = page_num;
+			'page-changed': function () {
 				this.$emit('form-refresh');
 			}
 		},

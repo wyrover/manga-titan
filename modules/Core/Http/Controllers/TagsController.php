@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Core\Http\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Pingpong\Modules\Routing\Controller;
 use Modules\Core\Http\Controllers\Iface\AjaxResponse;
 use Modules\Core\Entities\Manga;

@@ -34,6 +34,13 @@ class ModelEventProvider extends ServiceProvider {
 					File::delete(storage_path('image/'.$manga->thumb_path));
 			}
 		});
+		MangaPage::saving(function ($page) {
+			$extension = File::extension($page->img_path);
+			$newfilename = sprintf('%s-%s.%s', $page->id_manga, $page->page_num, $extension);
+			if (File::exists(storage_path('image/'.$page->img_path)))
+				File::move(storage_path('image/'.$page->img_path), storage_path('image/'.$newfilename));
+			$page->img_path = $newfilename;
+		});
 		MangaPage::deleting(function ($page) {
 			if ($page->img_path != '') {
 				if (File::exists(storage_path('image/'. $page->img_path)))
