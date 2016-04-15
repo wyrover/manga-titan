@@ -97,10 +97,12 @@
 					<td v-for="key in keys" v-html="item[key]"></td>
 					<td>
 						<vue-row-control
+						:data-row="item"
+						:is-href="isHref"
 						:can-detail="canDetail"
 						:can-edit="canEdit"
 						:can-delete="canDelete"
-						:data-row="item"></vue-row-control>
+						></vue-row-control>
 					</td>
 				</tr>
 			</tbody>
@@ -134,7 +136,8 @@
 			canEdit: { required:false, type:Boolean, default:true },
 			canDelete: { required:false, type:Boolean, default:true },
 			primaryId: { required:false, type: String, default:'id' },
-			listType: { required:false, type: String, default:'table'}
+			listType: { required:false, type: String, default:'table'},
+			isHref: {required:false, type:Object, default:function (){return {};} }
 		},
 		data:function () {
 			return {

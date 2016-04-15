@@ -116,7 +116,7 @@
   border: none medium;
   box-shadow: none;
   padding: 1em;
-  max-height: calc(100% - 48px);
+  max-height: calc(100% - 49px);
   overflow: auto;
 }
 

@@ -4,6 +4,8 @@
 @parent - Manga
 @endsection
 
+@set('routeurl',route('admin.page','{id}'))
+@set('routeurl', str_ireplace(['%7B','%7D'],['{','}'], $routeurl))
 @section('content')
 <div class="ui grid">
 	<div class="nine wide column form-admin" id="admin-side-left">
@@ -21,6 +23,11 @@
 			:button-delete="true"
 			></vue-form-title>
 			<vue-form-list
+			:is-href="{
+			detail:{enable:true,format:'{!! $routeurl !!}'},
+			edit:{enable:false,format:'{0}'},
+			delete:{enable:false,format:'{0}'}
+			}"
 			:maps="{
 			title: 'Manga',
 			page: 'Page Count',
