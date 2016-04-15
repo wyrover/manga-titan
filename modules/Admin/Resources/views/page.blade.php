@@ -21,7 +21,9 @@
 			:button-add="true"
 			:button-refresh="true"
 			:button-delete="true"
-			></vue-form-title>
+			>
+				<a slot="right" href="{{ route('admin.manga') }}" class="ui red icon button"><i class="icon share"></i></a>
+			</vue-form-title>
 			<vue-form-list
 			list-type="grid"
 			:can-detail = "false"

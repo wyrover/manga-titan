@@ -8,6 +8,9 @@
 	.form-modal .sortable.grid li .extra.content {
 		display: none;
 	}
+	.form-modal .sortable.grid li .dimm {
+		top: 0px;
+	}
 </style>
 
 <template>
