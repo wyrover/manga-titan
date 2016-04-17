@@ -6,6 +6,7 @@ use Pingpong\Modules\Routing\Controller;
 use Modules\Core\Http\Controllers\Iface\AjaxResponse;
 use Modules\Core\Entities\Manga;
 use Modules\Core\Entities\Category;
+use Sentinel;
 
 class MangaController extends Controller implements AjaxResponse {
 	
@@ -59,6 +60,7 @@ class MangaController extends Controller implements AjaxResponse {
 				$category->save();
 			}
 
+			$manga->id_uploader = Sentinel::getUser()->id;
 			$manga->title = $data['title'];
 			$manga->description = $data['description'];
 			$manga->thumb_path = $data['thumb'];

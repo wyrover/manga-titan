@@ -5,10 +5,5 @@
 </template>
 
 <script>
-	module.exports = {
-		events: {
-			'flash-field': function (data) {return true;},
-			'clear-field': function (data) {return true;}
- 		}
-	};
+	module.exports = {};
 </script>

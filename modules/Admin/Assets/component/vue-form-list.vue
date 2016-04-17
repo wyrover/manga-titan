@@ -75,6 +75,10 @@
 	.sortable.grid li .content .header {
 		color:#FAFAFA;
 	}
+
+	.ui.segment.form-content .ui.comments {
+		padding:1em;
+	}
 </style>
 
 <template>
@@ -97,11 +101,11 @@
 					<td v-for="key in keys" v-html="item[key]"></td>
 					<td>
 						<vue-row-control
-						:data-row="item"
-						:is-href="isHref"
-						:can-detail="canDetail"
-						:can-edit="canEdit"
-						:can-delete="canDelete"
+						:data-row.once="item"
+						:is-href.once="isHref"
+						:can-detail.once="canDetail"
+						:can-edit.once="canEdit"
+						:can-delete.once="canDelete"
 						></vue-row-control>
 					</td>
 				</tr>
@@ -125,6 +129,19 @@
 				</div>
 			</li>
 		</ul>
+
+		<div class="ui comments" v-if="listType=='comment'">
+			<div class="comment" v-for="n in 5">
+				<a class="avatar"><img src="/manga/image/thumb/dummy.png" alt=""></a>
+				<div class="content">
+					<a class="author">Joe Henderson</a>
+					<div class="metadata">
+						<span class="date">5 days ago</span>
+					</div>
+					<div class="text">Thanks</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -200,10 +217,7 @@
 			'row-clear': function () {
 				this.check_list = [];
 				this.data_list = [];
-			},
-			'row-detail': function () {return true;},
-			'row-edit': function () {return true;},
-			'row-delete': function () {return true;}
+			}
 		},
 		ready: function () {
 			$('.sortable.grid li').on('click','.dimm', function () {

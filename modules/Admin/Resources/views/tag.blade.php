@@ -11,7 +11,7 @@
 		name="tag-list"
 		form-target-add="tag-form"
 		form-target-edit="tag-form"
-		:form-action="{get:'get-tags-list', delete: 'tags-delete'}"
+		:form-action="{get:'get-tags', delete: 'tags-delete'}"
 		>
 			<vue-form-title
 			title="Tag List"
@@ -21,6 +21,7 @@
 			:button-delete="true"
 			></vue-form-title>
 			<vue-form-list
+			:can-detail = "false"
 			primary-id="id"
 			:maps="{
 			tag: 'Tag',

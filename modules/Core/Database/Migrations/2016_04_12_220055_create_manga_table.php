@@ -12,17 +12,25 @@ class CreateMangaTable extends Migration {
      */
     public function up()
     {
+        Schema::create('config_apps', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('type', 20);
+            $table->string('name', 200);
+            $table->string('content', 255);
+        });
+
         Schema::create('category', function (Blueprint $table) {
             $table->increments('id');
             $table->string('category', 40)->unique();
             $table->text('description')->nullable();
-            $table->string('thumb_path',255);
+            $table->string('thumb_path',255)->nullable();
             $table->timestamps();
         });
 
         Schema::create('manga', function(Blueprint $table){
             $table->increments('id');
             $table->integer('id_category')->unsigned();
+            $table->integer('id_uploader')->unsigned()->nullable();
             $table->string('title', 200);
             $table->text('description')->nullable();
             $table->string('thumb_path',255);
@@ -30,6 +38,7 @@ class CreateMangaTable extends Migration {
             $table->timestamps();
 
             $table->foreign('id_category')->references('id')->on('category')->onDelete('RESTRICT')->onUpdate('CASCADE');
+            $table->foreign('id_uploader')->references('id')->on('users')->onDelete('SET NULL')->onUpdate('CASCADE');
         });
 
         Schema::create('manga_page', function (Blueprint $table) {

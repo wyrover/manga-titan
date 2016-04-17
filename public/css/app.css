@@ -1,3 +1,28 @@
+.form-admin .form-tab.ui.menu {
+  background-color: #F3F4F5;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+  border-radius: 0;
+  border: none medium;
+  box-shadow: none;
+  border-bottom: 2px solid rgba(34, 36, 38, 0.15);
+}
+
+.form-admin .form-tab.ui.menu .item.active {
+  color: rgba(140, 140, 140, 0.87);
+  font-weight: normal;
+  border-color: #21BA45;
+}
+
+.form-admin .form-tab.ui.menu .item.active:hover {
+  border-color: #198f35;
+}
+
+.form-admin .form-tab.ui.menu .item {
+  color: rgba(140, 140, 140, 0.87);
+  padding: 17px 16px;
+}
+
 .form-admin .form-title.ui.segment {
   display: -webkit-flex;
   display: -ms-flexbox;
