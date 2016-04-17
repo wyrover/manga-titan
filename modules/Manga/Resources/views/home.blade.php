@@ -9,8 +9,11 @@
 		<div class="ui five column stackable grid manga-grid">
 			<manga-list>
 				<vue-filter></vue-filter>
-				<vue-list></vue-list>
-				<vue-page></vue-page>
+				<vue-list
+				list-type="grid"
+				:maps="{title: 'page',image: 'image'}"
+				></vue-list>
+				<vue-pagination></vue-pagination>
 			</manga-list>
 		</div>
 	</div>

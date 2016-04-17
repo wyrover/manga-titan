@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Pingpong\Modules\Routing\Controller;
 use Modules\Core\Http\Controllers\Iface\AjaxResponse;
 use Modules\Core\Entities\Manga;
+use Modules\Core\Entities\Tag;
 
 class TagsController extends Controller implements AjaxResponse {
 	
@@ -36,7 +37,22 @@ class TagsController extends Controller implements AjaxResponse {
 	}
 	
 	public static function deleteData($data) {
-		//
+		$result = ['message' => '', 'success' => false];
+		try {
+			if (is_array($data['id'])) {
+				foreach ($data['id'] as $id) {
+					Tag::findOrFail($id)->delete();
+				}
+			} else {
+				Tag::findOrFail($data['id'])->delete();
+			}
+			$result['message'] = 'Success Delete data';
+			$result['success'] = true;
+		} catch (ModelNotFoundException $e) {
+			$result['message'] = $e->getMessage();
+			$result['success'] = false;
+		}
+		return $result;
 	}
 
 	public static function detailData($data) {

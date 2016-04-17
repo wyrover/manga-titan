@@ -24,7 +24,6 @@
 			primary-id="id"
 			:maps="{
 			category: 'Category',
-			desc: 'Desc',
 			used: 'Used'
 			}"
 			:can-detail="false"

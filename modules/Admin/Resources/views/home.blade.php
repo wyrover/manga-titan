@@ -45,7 +45,18 @@
 				</vue-form-fields>
 			</vue-form>
 		</vue-tab-content>
-		<vue-tab-content data-tab="graph">second</vue-tab-content>
+		<vue-tab-content data-tab="graph">
+			<vue-form
+			name="manga-form"
+			:form-action="{get:'get-graph'}"
+			>
+				<vue-form-title
+				title="Graph visitor"
+				icon="line chart"
+				:button-refresh="true"
+				></vue-form-title>
+			</vue-form>
+		</vue-tab-content>
 	</div>
 	<div class="seven wide column form-admin" id="admin-side-right">
 		<vue-tab

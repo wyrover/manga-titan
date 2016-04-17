@@ -28,6 +28,10 @@
 		height: 225px;
 		position: relative;
 	}
+	.sortable.grid.mini li {
+		width: 120px;
+		height: 180px;
+	}
 	.sortable.grid li .content {
 		background-color: rgba(0, 0, 0, 0.5);
 		position: absolute;
@@ -35,6 +39,32 @@
 		padding: 5px;
 		left: 0px;
 		right: 0px;
+		word-break: break-all;
+		word-wrap: break-word;
+	}
+	.sortable.grid li .dimm {
+		position: absolute;
+		top:30px;
+		bottom: 0px;
+		left:0px;
+		right:0px;
+		cursor: pointer;
+		color:white;
+		text-align: center;
+		z-index: 3;
+	}
+	.sortable.grid li input {
+		display: none;
+	}
+	.sortable.grid li input[type="checkbox"]:checked + .dimm {
+		background-color:rgba(0, 0, 0, 0.5);
+	}
+	.sortable.grid li .dimm i.icon {
+		margin-top:calc(50% - 28px);
+		display: none;
+	}
+	.sortable.grid li input[type="checkbox"]:checked + .dimm i.icon {
+		display: inline-block;
 	}
 	.sortable.grid li .content:not(.extra) {
 		bottom: 0px;
@@ -45,65 +75,154 @@
 	.sortable.grid li .content .header {
 		color:#FAFAFA;
 	}
+
+	.ui.segment.form-content .ui.comments {
+		padding:1em;
+	}
 </style>
 
 <template>
-	<div class="row manga-list">
-		<ul class="sortable grid" v-if="manga_list.length > 0">
-			<li class="manga" v-for="manga in manga_list" :style="getBackground(manga)">
-				<a :href="getHref(manga)">
-					<div class="content"><span class="header" >{{ manga.manga_title }}</span></div>
-					<div class="extra content">
-						<span><i class="icon unhide"></i>{{ manga.manga_views }}</span>
-						<span><i class="icon file"></i>{{ manga.manga_pages }}</span>
-					</div>
-				</a>
-			</li>
-		</ul>
-		<!-- <div class="column" v-for="manga in manga_list" v-if="manga_list.length > 0">
-			<div class="ui manga card fluid">
-				<a class="image" :href="getHref(manga)">
-					<div class="ui left corner red label"><i class="heart icon"></i></div>
-					<div class="image container"></div>
-					<img :src="getBackground(manga)" class="ui image">
-				</a>
-				<div class="content">
-					<a class="header" :href="getHref(manga)">{{ manga.manga_title }}</a>
+	<div class="sixteen wide column">
+		<table class="ui very basic selectable table form-table" v-if="listType=='table'">
+			<thead>
+				<tr>
+					<th><div class="ui fitted checkbox"><input type="checkbox" v-model="checkall"> <label></label></div></th>
+					<th v-for="col in columns">{{ col }}</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="item in data_list" v-if="data_list.length > 0">
+					<td class="collapsing">
+						<div class="ui fitted checkbox">
+							<input type="checkbox" :name="primaryId + '[]'" :value="item[primaryId]" v-model="check_list"><label></label>
+						</div>
+					</td>
+					<td v-for="key in keys" v-html="item[key]"></td>
+					<td>
+						<vue-row-control
+						:data-row.once="item"
+						:is-href.once="isHref"
+						:can-detail.once="canDetail"
+						:can-edit.once="canEdit"
+						:can-delete.once="canDelete"
+						></vue-row-control>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<ul class="sortable mini grid" v-if="listType=='grid' && data_list.length > 0">
+			<li v-for="item in data_list" :style="getBackground(item[maps.image])">
+				<div class="content"><span class="header" >{{ item[maps.title] }}</span></div>
+				<input type="checkbox" :name="primaryId + '[]'" :value="item[primaryId]" v-model="check_list">
+				<div class="dimm">
+					<i class="icon huge checkmark"></i>
 				</div>
 				<div class="extra content">
-					<a><i class="icon unhide"></i>{{ manga.manga_views }}</a>
-					<a><i class="icon file"></i>{{ manga.manga_pages }}</a>
+					<vue-row-control
+					:can-detail="canDetail"
+					:can-edit="canEdit"
+					:can-delete="canDelete"
+					:data-row="item"
+					:class="['icon']"></vue-row-control>
+				</div>
+			</li>
+		</ul>
+
+		<div class="ui comments" v-if="listType=='comment'">
+			<div class="comment" v-for="n in 5">
+				<a class="avatar"><img src="/manga/image/thumb/dummy.png" alt=""></a>
+				<div class="content">
+					<a class="author">Joe Henderson</a>
+					<div class="metadata">
+						<span class="date">5 days ago</span>
+					</div>
+					<div class="text">Thanks</div>
 				</div>
 			</div>
-		</div> -->
-		<div class="sixteen wide column" v-else><div class="ui message warning">No there manga to share with you. I'm serious.</div></div>
+		</div>
 	</div>
 </template>
 
 <script>
 	module.exports = {
-		data: function () {
+		props: {
+			maps: { required:true, type:Object },
+			canDetail: { required:false, type:Boolean, default:true },
+			canEdit: { required:false, type:Boolean, default:true },
+			canDelete: { required:false, type:Boolean, default:true },
+			primaryId: { required:false, type: String, default:'id' },
+			listType: { required:false, type: String, default:'table'},
+			isHref: {required:false, type:Object, default:function (){return {};} }
+		},
+		data:function () {
 			return {
-				manga_list: []
+				data_list: [],
+				check_list: []
 			};
 		},
-		methods: {
-			getBackground: function (manga) {
-				if (manga.manga_cover == '')
-					return {backgroundImage:"url('/manga/image/original/dummy.png')"};
-				// 	return '/manga/image/thumb/dummy.png';
-				
-				// return '/manga/image/thumb/' + manga.manga_cover;
-				return {backgroundImage:"url('" + '/manga/image/thumb/' + manga.manga_cover + "')"};
+		computed: {
+			checkall: {
+				set: function (val) {
+					this.check_list = [];
+					if (val) {
+						var that = this;
+						$.each (this.data_list, function (index, item) {
+							that.check_list.push(item[that.primaryId]);
+						});
+					}
+				},
+				get: function () {
+					if (this.check_list.length == this.data_list.length && this.data_list.length > 0)
+						return true;
+					return false;
+				}
 			},
-			getHref: function (manga) {
-				return '/manga/desc/' + manga.manga_id;
+			columns: function () {
+				var col = $.map(this.maps, function (item, index) {
+					return item;
+				});
+				return col;
+			},
+			keys: function () {
+				var key = $.map(this.maps, function (item, index) {
+					return index;
+				});
+				return key;
+			}
+		},
+		methods: {
+			getBackground: function (image) {
+				if (image == '')
+					return {backgroundImage:"url('/manga/image/original/dummy.png')"};
+
+				return {backgroundImage:"url('" + '/manga/image/thumb/' + image + "')"};
 			}
 		},
 		events: {
-			'update-list': function (arrlist) {
-				this.manga_list = arrlist;
+			'row-flash': function (data, selectall) {
+				var that=this;
+				if (typeof data != 'undefined') {
+					this.check_list = [];
+					this.data_list = data;
+					this.$nextTick(function () {
+						$('.sortable.grid li').on('click','.dimm', function () {
+							$(this).parent().find('input').trigger('click');
+						});
+						if (selectall) that.checkall = true;
+					});
+				}
+			},
+			'row-clear': function () {
+				this.check_list = [];
+				this.data_list = [];
 			}
+		},
+		ready: function () {
+			$('.sortable.grid li').on('click','.dimm', function () {
+				$(this).parent().find('input').trigger('click');
+			});
 		}
-	};
+	}
 </script>

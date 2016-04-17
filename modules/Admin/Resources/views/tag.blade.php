@@ -11,7 +11,7 @@
 		name="tag-list"
 		form-target-add="tag-form"
 		form-target-edit="tag-form"
-		:form-action="{get:'get-tags', delete: 'tags-delete'}"
+		:form-action="{get:'get-tags', delete: 'delete-tags'}"
 		>
 			<vue-form-title
 			title="Tag List"
