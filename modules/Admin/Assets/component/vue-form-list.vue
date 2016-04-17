@@ -154,7 +154,24 @@
 			canDelete: { required:false, type:Boolean, default:true },
 			primaryId: { required:false, type: String, default:'id' },
 			listType: { required:false, type: String, default:'table'},
-			isHref: {required:false, type:Object, default:function (){return {};} }
+			isHref: {
+				required: false,
+				type: Object,
+				default: function (){
+					return {
+						detail:{
+							enable:false,
+							format:'{0}'
+						}, edit:{
+							enable:false,
+							format:'{0}'
+						}, delete:{
+							enable:false,
+							format:'{0}'
+						}
+					};
+				}
+			}
 		},
 		data:function () {
 			return {

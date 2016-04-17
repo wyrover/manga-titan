@@ -78,10 +78,24 @@ class CategoryController extends Controller implements AjaxResponse {
 		foreach ($category as $cate) {
 			$datacol[] = [
 				'value' => $cate->id,
-				'text' => $cate->category
+				'text' => $cate->category,
 			];
 		}
 		return ['data' => $datacol, 'message' => 'source category', 'success' => true];
+	}
+
+	public static function getHomeList($data) {
+		$category = Category::all();
+		$datacol = [];
+		foreach ($category as $cate) {
+			$datacol[] = [
+				'value' => $cate->id,
+				'text' => $cate->category,
+				'image' => $cate->thumb_path,
+			];
+		}
+		$retdata = ['data' => $datacol];
+		return ['data' => $retdata, 'message' => 'source category', 'success' => true];
 	}
 
 }

@@ -29,8 +29,8 @@
 		position: relative;
 	}
 	.sortable.grid.mini li {
-		width: 120px;
-		height: 180px;
+		width: 140px;
+		height: 210px;
 	}
 	.sortable.grid li .content {
 		background-color: rgba(0, 0, 0, 0.5);
@@ -42,30 +42,7 @@
 		word-break: break-all;
 		word-wrap: break-word;
 	}
-	.sortable.grid li .dimm {
-		position: absolute;
-		top:30px;
-		bottom: 0px;
-		left:0px;
-		right:0px;
-		cursor: pointer;
-		color:white;
-		text-align: center;
-		z-index: 3;
-	}
-	.sortable.grid li input {
-		display: none;
-	}
-	.sortable.grid li input[type="checkbox"]:checked + .dimm {
-		background-color:rgba(0, 0, 0, 0.5);
-	}
-	.sortable.grid li .dimm i.icon {
-		margin-top:calc(50% - 28px);
-		display: none;
-	}
-	.sortable.grid li input[type="checkbox"]:checked + .dimm i.icon {
-		display: inline-block;
-	}
+
 	.sortable.grid li .content:not(.extra) {
 		bottom: 0px;
 	}
@@ -82,7 +59,6 @@
 </style>
 
 <template>
-	<div class="sixteen wide column">
 		<table class="ui very basic selectable table form-table" v-if="listType=='table'">
 			<thead>
 				<tr>
@@ -115,10 +91,6 @@
 		<ul class="sortable mini grid" v-if="listType=='grid' && data_list.length > 0">
 			<li v-for="item in data_list" :style="getBackground(item[maps.image])">
 				<div class="content"><span class="header" >{{ item[maps.title] }}</span></div>
-				<input type="checkbox" :name="primaryId + '[]'" :value="item[primaryId]" v-model="check_list">
-				<div class="dimm">
-					<i class="icon huge checkmark"></i>
-				</div>
 				<div class="extra content">
 					<vue-row-control
 					:can-detail="canDetail"
@@ -142,7 +114,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 </template>
 
 <script>

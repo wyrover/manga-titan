@@ -12,3 +12,4 @@ Vue.component('vue-pagination',			require('./component/vue-pagination.vue'));
 Vue.component('vue-list',			require('./component/vue-list.vue'));
 Vue.component('vue-navigator',		require('./component/vue-navigator.vue'));
 Vue.component('vue-image',			require('./component/vue-image.vue'));
+Vue.component('vue-form',			require('./component/vue-form.vue'));

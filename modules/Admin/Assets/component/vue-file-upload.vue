@@ -131,7 +131,8 @@
 			'flash-field': function (data) {
 				if (! this.multiple && this.name in data) {
 					this.files = [];
-					this.files.push(data[this.name]);
+					if (data[this.name] != null && data[this.name] != '')
+						this.files.push(data[this.name]);
 				}
 				this.is_edit = true;
 			},

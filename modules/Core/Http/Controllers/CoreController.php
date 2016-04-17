@@ -31,6 +31,7 @@ class CoreController extends Controller {
 			'save-category'		=> __NAMESPACE__.'\CategoryController::saveData',
 			'delete-category'	=> __NAMESPACE__.'\CategoryController::deleteData',
 			'source-category'	=> __NAMESPACE__.'\CategoryController::sourceData',
+			'get-home-category'	=> __NAMESPACE__.'\CategoryController::getHomeList',
 
 			'get-tags'			=> __NAMESPACE__.'\TagsController::getData',
 			'save-tags'			=> __NAMESPACE__.'\TagsController::saveData',
