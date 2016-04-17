@@ -3,9 +3,6 @@
 namespace Modules\Manga\Http\Controllers\Traitajax;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Modules\Manga\Entities\Manga;
-use Modules\Manga\Entities\MangaPage;
-use Modules\Manga\Entities\Category;
 use File;
 
 trait TraitManga {
@@ -34,9 +31,6 @@ trait TraitManga {
 		$result['data'] = ['manga_list' => $manga_arr, 'max_page' => $max_page, 'page_num' => $page_num];
 		$result['success'] = true;
 		return $result;
-	}
-	public function getMangaDesc($id_manga) {
-		return Manga::find($id_manga);
 	}
 	public function getPages($data) {
 		$result = ['message' => '', 'success' => false];

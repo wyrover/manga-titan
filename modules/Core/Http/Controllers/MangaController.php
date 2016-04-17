@@ -93,7 +93,25 @@ class MangaController extends Controller implements AjaxResponse {
 	}
 
 	public static function detailData($data) {
-		//
+		$result = ['message' => 'Failed get detail', 'success' => false];
+		if (! array_key_exists('id', $data)) return $result;
+
+		try {
+			$manga = Manga::findOrFail($data['id']);
+
+			$data['title'] = $manga->title;
+			$data['description'] = $manga->description;
+			$data['category'] = $manga->category->category;
+			$data['thumb'] = $manga->thumb_path;
+
+			$result['data']['data'] = $data;
+			$result['message'] = 'Success get data';
+			$result['success'] = true;
+		} catch (ModelNotFoundException $e) {
+			$result['message'] = $e->getMessage();
+			$result['success'] = false;
+		}
+		return $result;
 	}
 	
 }

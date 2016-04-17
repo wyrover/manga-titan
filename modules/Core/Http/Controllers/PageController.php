@@ -86,4 +86,39 @@ class PageController extends Controller implements AjaxResponse {
 		//
 	}
 	
+	public static function getThumbs($data) {
+		$result = ['message' => 'Failed get page', 'success' => false];
+		$resdata = [];$coldata = [];
+		$page_num = (array_key_exists('page_num', $data) && intval($data['page_num']) > 0)?intval($data['page_num']):1;
+		if (! array_key_exists('id_manga', $data)) return $result;
+
+		try {
+			$manga = Manga::findOrFail($data['id_manga']);
+			$pages = $manga->mangapages->sortBy('page_num');
+			$max_page = ceil($pages->count() / 20);
+			$pages = $pages->forPage($page_num, 20);
+
+			foreach ($pages as $page) {
+				$coldata[] = [
+					'id' => $page->id,
+					'title'	=> 'Page ' . $page->page_num,
+					'image' => $page->img_path
+				];
+			}
+
+			$resdata = [
+				'data' => $coldata,
+				'max_page' => $max_page,
+				'page_num' => $page_num
+			];
+			$result['data'] = $resdata;
+			$result['message'] = 'Success get data';
+			$result['success'] = true;
+		} catch (ModelNotFoundException $e) {
+			$result['message'] = $e->getMessage();
+			$result['success'] = false;
+		}
+		return $result;
+	}
+
 }

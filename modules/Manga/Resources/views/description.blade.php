@@ -1,50 +1,41 @@
 @extends('manga::master')
 
 @section('title')
-@parent - "{{ $manga->title }}"
+@parent - Description
 @endsection
 
+@set('routeurl',route('manga.read','{id}'))
+@set('routeurl', str_ireplace(['%7B','%7D'],['{','}'], $routeurl))
 @section('content')
 <div class="sixteen wide column">
 	<h3 class="ui header dividing">Description</h3>
-	<div class="ui grid">
-		<div class="four wide column">
-			<img src="{{ route('imagecache', ['template' => 'read', 'filename' => $manga->thumb_path]) }}" alt="" class="ui medium image">
-		</div>
-		<div class="twelve wide column">
-			<div class="ui list">
-				<div class="item">
-					<div class="content">
-						<a class="header">Title</a>
-						<div class="description">{{ $manga->title }}</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="content">
-						<a class="header">Description</a>
-						<div class="description">{{ $manga->description }}</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="content">
-						<a class="header">Category</a>
-						<div class="description">{{ $manga->category->category }}</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="content">
-						<a class="header">Tags</a>
-						<div class="description">
-						@foreach($manga->tags as $tag)
-							<div class="ui tag label">{{ $tag->name }}</div>
-						@endforeach
-						</div>
-					</div>
-				</div>
-			</div>
-			<a href="{{ route('manga.read', ['id'=> $manga->id]) }}" class="ui green button">Read Manga</a>
-		</div>
-	</div>
-	<manga-thumb></manga-thumb>
+	<vue-form
+	id="category"
+	:form-action="{get: 'detail-manga'}"
+	:optional-param="{id: {{$id_manga}} }">
+		<vue-desc>
+			<vue-desc-image slot="left" name="thumb"></vue-desc-image>
+			<vue-desc-content slot="right" :maps="[
+				{label:'Title', key:'title', type:'text'},
+				{label:'Synopsis', key:'description', type:'text'},
+				{label:'Artist', key: 'artist', type:'label'},
+				{label:'Category', key:'category', type:'text'},
+				{label:'Tags', key:'tags', type:'label'},
+				{label:'Rating', key:'rating', type:'rating'},
+				{label:'Views', key:'views', type:'text'},
+				{label:'Uploaded at', key:'created_at', type:'text'},
+				{label:'Uploader', key:'uploader', type:'text'}
+			]"></vue-desc-content>
+		</vue-desc>
+	</vue-form>
+	<h3 class="ui header dividing">Thumbs</h3>
+	<vue-form :form-action="{get:'get-thumb-page'}" :optional-param="{id_manga: {{$id_manga}} }" id="thumb">
+		<vue-list
+		list-type="grid"
+		:maps="{title: 'title',image: 'image'}"
+		:with-link = "true"
+		link-format="{{$routeurl}}"></vue-list>
+		<vue-pagination></vue-pagination>
+	</vue-form>
 </div>
 @endsection

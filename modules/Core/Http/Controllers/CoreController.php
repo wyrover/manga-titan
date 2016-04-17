@@ -48,10 +48,12 @@ class CoreController extends Controller {
 			'get-manga'			=> __NAMESPACE__.'\MangaController::getData',
 			'save-manga'		=> __NAMESPACE__.'\MangaController::saveData',
 			'delete-manga'		=> __NAMESPACE__.'\MangaController::deleteData',
+			'detail-manga'		=> __NAMESPACE__.'\MangaController::detailData',
 			
 			'get-page'			=> __NAMESPACE__.'\PageController::getData',
 			'save-page'			=> __NAMESPACE__.'\PageController::saveData',
 			'delete-page'		=> __NAMESPACE__.'\PageController::deleteData',
+			'get-thumb-page'	=> __NAMESPACE__.'\PageController::getThumbs',
 		];
 	}
 	
