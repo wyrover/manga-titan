@@ -3,6 +3,7 @@
 		<div class="ui stackable grid manga-grid">
 			<slot></slot>
 		</div>
+		<input type="hidden" :name="item.name" :value="item.value" v-for="item in additionalParam">
 	</form>
 </template>
 
@@ -18,6 +19,11 @@
 				type: Object,
 				default: function () {return {};}
 			},
+			optionalParam: {
+				required:false,
+				type:Object,
+				default:function () {return {};}
+			}
 		},
 		computed: {
 			id_form: function () {
@@ -25,6 +31,19 @@
 			},
 			name: function () {
 				return this.id;
+			},
+			additionalParam: function () {
+				var param = [];
+				$.each(this.optionalParam, function (key, item) {
+					if (typeof item == 'Array') {
+						$.each(item, function (index, value) {
+							param.push({name:key + '[]', value:value});
+						});
+					} else {
+						param.push({name:key, value:item});
+					}
+				});
+				return param;
 			}
 		},
 		methods: {
@@ -59,6 +78,9 @@
 					name: this.name
 				};
 				this.$dispatch('ajax-action', data);
+			},
+			'page-changed': function () {
+				this.$emit('form-refresh');
 			}
 		},
 		ready: function () {
