@@ -24,7 +24,7 @@
 		computed: {
 			src: function () {
 				if (this.pages[this.page_index] == '' || this.has_error || this.pages.length == 0)
-					return '/manga/image/original/dummy.png';
+					return '/manga/image/thumb/dummy.png';
 
 				return '/manga/image/read/' + this.pages[this.page_index];
 			}

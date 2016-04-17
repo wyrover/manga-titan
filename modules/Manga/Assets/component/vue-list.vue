@@ -182,7 +182,7 @@
 		methods: {
 			getBackground: function (image) {
 				if (image == '')
-					return {backgroundImage:"url('/manga/image/original/dummy.png')"};
+					return {backgroundImage:"url('/manga/image/thumb/dummy.png')"};
 
 				return {backgroundImage:"url('" + '/manga/image/thumb/' + image + "')"};
 			},
