@@ -25,23 +25,25 @@
 		},
 		methods: {
 			nextPage: function () {
-				if (this.page_num < max_page)
+				var that = this;
+				if (this.page_num < this.max_page)
 					this.page_num++;
-
-				this.$dispatch('page-changed', this.page_num);
+				
+				this.$nextTick(function () {that.$dispatch('page-changed');});
 			},
 			prevPage: function () {
+				var that = this;
 				if (this.page_num > 1)
 					this.page_num--;
 
-				this.$dispatch('page-changed', this.page_num);
+				this.$nextTick(function () {that.$dispatch('page-changed');});
 			}
 		},
 		events: {
 			'change-page': function (data) {
 				if (typeof data.page_num != 'undefined' && typeof data.max_page != 'undefined') {
-					this.page_num = data.page_num;
 					this.max_page = data.max_page;
+					this.page_num = data.page_num;
 				}
 			}
 		},
