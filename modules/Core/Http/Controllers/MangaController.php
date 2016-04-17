@@ -27,6 +27,7 @@ class MangaController extends Controller implements AjaxResponse {
 				'category' => $mang->category->id,
 				'tags' => $mang->getTagsArr(),
 				'thumb' => $mang->thumb_path,
+				'views' => $mang->views,
 				'created_at' => $mang->created_at->diffForHumans()
 			];
 		}

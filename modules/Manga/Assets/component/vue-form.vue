@@ -1,6 +1,8 @@
-<template>
-	<form :id="id_name">
-		<slot></slot>
+ <template>
+	<form :id="id_form" :name="id_form">
+		<div class="ui stackable grid manga-grid">
+			<slot></slot>
+		</div>
 	</form>
 </template>
 
@@ -18,8 +20,11 @@
 			},
 		},
 		computed: {
-			id_name: function () {
+			id_form: function () {
 				return 'form-' + this.id;
+			},
+			name: function () {
+				return this.id;
 			}
 		},
 		methods: {
@@ -34,7 +39,6 @@
 					else 
 						objectsubmit[item.name] = item.value;
 				});
-
 				return objectsubmit;
 			}
 		},
@@ -43,7 +47,6 @@
 				if (data.success && name == this.name) {
 					this.$broadcast('change-page', {page_num:data.data.page_num, max_page:data.data.max_page});
 					this.$broadcast('row-flash', data.data.data);
-					console.log(data.data.data);
 				}
 			},
 			'form-refresh': function () {

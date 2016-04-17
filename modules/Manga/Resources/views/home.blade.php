@@ -4,20 +4,21 @@
 @parent - Home
 @endsection
 
+@set('routeurl',route('manga.desc','{id}'))
+@set('routeurl', str_ireplace(['%7B','%7D'],['{','}'], $routeurl))
 @section('content')
 	<div class="twelve wide column">
-		<div class="ui five column stackable grid manga-grid">
-			<manga-list>
-				<vue-filter></vue-filter>
-				<div class="sixteen wide column">
-				<vue-list
-				list-type="grid"
-				:maps="{title: 'page',image: 'image'}"
-				></vue-list>
-				</div>
-				<vue-pagination></vue-pagination>
-			</manga-list>
-		</div>
+		<vue-form id="aasf" :form-action="{get:'get-manga'}">
+			<vue-filter></vue-filter>
+			<vue-list
+			list-type="grid"
+			:maps="{title: 'title',image: 'thumb'}"
+			:with-extra = "true"
+			:with-link = "true"
+			link-format="{{$routeurl}}"
+			></vue-list>
+			<vue-pagination></vue-pagination>
+		</vue-form>
 	</div>
 	<div class="four wide column">
 		<h4 class="ui dividing header">Tags</h4>

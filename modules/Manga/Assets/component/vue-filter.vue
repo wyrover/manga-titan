@@ -1,7 +1,7 @@
 <template>
 	<div class="row">
 		<div class="sixteen wide column">
-			<form action="" class="ui form">
+			<div class="ui form">
 				<div class="four fields">
 					<div class="field">
 						<label>Length</label>
@@ -35,7 +35,7 @@
 						<input type="text">
 					</div>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 </template>
