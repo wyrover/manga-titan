@@ -6,6 +6,7 @@
 /storage/image/*
 !/storage/image/001.jpg
 !/storage/image/dummy.png
+!/storage/image/screenshot-mangatitan com 2016-04-17 21-09-01.png
 /storage/upload/*
 /storage/thumb/*
 Homestead.yaml
