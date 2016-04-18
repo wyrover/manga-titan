@@ -4,7 +4,7 @@
 @parent - Description
 @endsection
 
-@set('routeurl',route('manga.read','{id}'))
+@set('routeurl',route('manga.read',[$id_manga, '{page}']))
 @set('routeurl', str_ireplace(['%7B','%7D'],['{','}'], $routeurl))
 @section('content')
 <div class="sixteen wide column">

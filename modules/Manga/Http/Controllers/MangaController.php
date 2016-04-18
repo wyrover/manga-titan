@@ -41,7 +41,6 @@ class MangaController extends Controller {
 
 	public function read($id_manga, $page = 1)
 	{
-		$manga = $this->getMangaDesc($id_manga);
-		return view('manga::read', ['manga' => $manga, 'page' => $page]);
+		return view('manga::read', ['id_manga' => $id_manga, 'page' => $page]);
 	}
 }

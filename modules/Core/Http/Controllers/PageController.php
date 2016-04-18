@@ -102,7 +102,8 @@ class PageController extends Controller implements AjaxResponse {
 				$coldata[] = [
 					'id' => $page->id,
 					'title'	=> 'Page ' . $page->page_num,
-					'image' => $page->img_path
+					'image' => $page->img_path,
+					'page' => $page->page_num
 				];
 			}
 
@@ -111,6 +112,27 @@ class PageController extends Controller implements AjaxResponse {
 				'max_page' => $max_page,
 				'page_num' => $page_num
 			];
+			$result['data'] = $resdata;
+			$result['message'] = 'Success get data';
+			$result['success'] = true;
+		} catch (ModelNotFoundException $e) {
+			$result['message'] = $e->getMessage();
+			$result['success'] = false;
+		}
+		return $result;
+	}
+
+	public static function getPages($data) {
+		$result = ['message' => 'Failed get page', 'success' => false];
+		$resdata = [];$coldata = [];
+		if (! array_key_exists('id_manga', $data)) return $result;
+
+		try {
+			$manga = Manga::findOrFail($data['id_manga']);
+			$pages = $manga->mangapages->sortBy('page_num');
+			foreach ($pages as $page) {
+				$resdata[] = $page->img_path;
+			}
 			$result['data'] = $resdata;
 			$result['message'] = 'Success get data';
 			$result['success'] = true;

@@ -37,6 +37,7 @@
 		events: {
 			'flash-page': function (pages) {
 				this.pages = pages;
+				this.page_index = 0;
 			},
 			'change-page': function (page) {
 				var index = page - 1;

@@ -54,6 +54,7 @@ class CoreController extends Controller {
 			'save-page'			=> __NAMESPACE__.'\PageController::saveData',
 			'delete-page'		=> __NAMESPACE__.'\PageController::deleteData',
 			'get-thumb-page'	=> __NAMESPACE__.'\PageController::getThumbs',
+			'get-pages-for-read'=> __NAMESPACE__.'\PageController::getPages',
 		];
 	}
 	

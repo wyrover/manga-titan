@@ -1,12 +1,12 @@
 <style>
 	.ui.fullwidth.rail {
-		left:calc( 50% - 90px);
-		width: 190px !important;
+		left:calc( 50% - 105px);
+		width: 210px !important;
 	}
 	.ui.link.dropdown.page.item {
 		border: none !important;
 		border-radius: 0;
-		min-width: unset;
+		min-width: 120px;
 	}
 	.ui.link.dropdown.page.item > .icon.dropdown {
 		display: none;
@@ -31,7 +31,7 @@
 	module.exports = {
 		props: {
 			page: { required: true, type: Number },
-			maxPage: { required: true, type: Number }
+			maxPage: { required: false, type: Number, default:0 }
 		},
 		data: function () {
 			return {
@@ -39,25 +39,33 @@
 				page_num: 0
 			}
 		},
+		watch: {
+			'page_num': function (val, oldval) {
+				this.$emit('page-change');
+			}
+		},
 		methods: {
 			nextPage: function () {
 				if (this.page_num < this.max_page)
 					this.page_num++;
-				this.$emit('page-change');
 			},
 			prevPage: function () {
 				if (this.page_num > 1)
 					this.page_num--;
-				this.$emit('page-change');
 			},
 			pageSelected: function (page) {
 				this.page_num = page;
-				this.$emit('page-change');
 			}
 		},
 		events: {
+			'flash-page': function (pages) {
+				var that = this;
+				this.max_page = pages.length;
+				this.$nextTick(function () {that.$emit('page-change');});
+			},
 			'page-change': function () {
-				$('.ui.dropdown.link.item.page').dropdown('set selected', this.page_num);
+				var that = this;
+				setTimeout(function () {$('.ui.dropdown.link.item.page').dropdown('set selected', that.page_num);},0);
 				this.$dispatch('page-changed', this.page_num);
 			}
 		},

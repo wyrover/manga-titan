@@ -19,7 +19,7 @@
 			};
 		},
 		events: {
-			'get-page-callback': function (data) {
+			'get-page-callback': function (data, name) {
 				if (data.success) {
 					this.$broadcast('flash-page', data.data);
 				}
@@ -27,10 +27,11 @@
 			'get-page': function () {
 				var data = {
 					data: {
-						manga_id: this.manga_id
+						id_manga: this.manga_id
 					},
-					client_action: 'get-pages-for-view',
-					callback: 'get-page-callback'
+					client_action: 'get-pages-for-read',
+					callback: 'get-page-callback',
+					name: 'manga-read'
 				};
 				this.$dispatch('ajax-action', data);
 			},
