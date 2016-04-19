@@ -9,6 +9,11 @@ class MangaPage extends Model {
     protected $table = 'manga_page';
 
     public function manga(){
-    	return $this->belongsTo(__NAMESPACE__ . '\Manga', 'id_manga');
+        return $this->belongsTo(__NAMESPACE__ . '\Manga', 'id_manga');
     }
+
+    public function comments(){
+        return $this->morphToMany(__NAMESPACE__.'\Comment', 'commentable', 'commentable');
+    }
+
 }

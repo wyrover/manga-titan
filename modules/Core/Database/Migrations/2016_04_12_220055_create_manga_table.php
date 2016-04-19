@@ -62,21 +62,20 @@ class CreateMangaTable extends Migration {
             $table->foreign('id_users')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
 
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('comment', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_manga')->unsigned();
             $table->integer('id_users')->unsigned();
-
-            $table->integer('id_parent')->unsinged()->nullable();
-            $table->integer('lidx')->nullable();
-            $table->integer('ridx')->nullable();
-            $table->integer('depth')->nullable();
 
             $table->text('comment');
             $table->timestamps();
 
-            $table->foreign('id_manga')->references('id')->on('manga')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('id_users')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
+        });
+
+        Schema::create('commentable', function (Blueprint $table) {
+            $table->integer('comment_id');
+            $table->integer('commentable_id')->unsigned();
+            $table->string('commentable_type');
         });
 
         Schema::create('favorite', function (Blueprint $table) {
@@ -97,11 +96,13 @@ class CreateMangaTable extends Migration {
     public function down()
     {
         Schema::dropIfExists('favorite');
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('commentable');
+        Schema::dropIfExists('comment');
         Schema::dropIfExists('rating');
         Schema::dropIfExists('manga_page');
         Schema::dropIfExists('manga');
         Schema::dropIfExists('category');
+        Schema::dropIfExists('config_apps');
     }
 
 }

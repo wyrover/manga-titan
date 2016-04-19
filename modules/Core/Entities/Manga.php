@@ -33,4 +33,8 @@ class Manga extends Model implements TaggableInterface{
     	return $ret;
     }
 
+    public function comments(){
+        return $this->morphToMany(__NAMESPACE__.'\Comment', 'commentable', 'commentable');
+    }
+
 }

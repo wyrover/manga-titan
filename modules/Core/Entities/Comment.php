@@ -1,20 +1,18 @@
 <?php
 namespace Modules\Core\Entities;
-   
-use Baum\Node;
+
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Node {
+class Comment extends Model {
 
     protected $table = 'comment';
 
-	protected $parentColumn = 'id_parent';
+    public function manga() {
+        return $this->morphedByMany(__NAMESPACE__.'\Manga', 'commentable', 'commentable');
+    }
 
-	protected $leftColumn = 'lidx';
+    public function page() {
+        return $this->morphedByMany(__NAMESPACE__.'\MangaPage', 'commentable', 'commentable');
+    }
 
-	protected $rightColumn = 'ridx';
-
-	protected $depthColumn = 'depth';
-
-	protected $guarded = ['id', 'id_parent', 'lidx', 'ridx', 'depth'];
 }
