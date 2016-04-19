@@ -1,7 +1,13 @@
 <template>
 <table class="ui basic definition table">
-  <tbody>
-    <tr>
+    <tbody v-if="remap.length > 0">
+        <tr v-for="item in remap">
+            <td v-text="item.label"></td>
+            <td v-if="item.type=='text'" v-text="tmpdata[item.key]"></td>
+            <td v-if="item.type=='rating'"><vue-desc-rating :data-desc="tmpdata[item.key]"></vue-desc-rating></td>
+            <td v-else></td>
+        </tr>
+    <!-- <tr>
       <td>Title</td>
       <td>September 14, 2013</td>
     </tr>
@@ -34,10 +40,10 @@
     		<a href="hre">Category</a>
     	</td>
     </tr>
-    <tr><td>Rating</td><td><div class="ui star rating" data-rating="3"></div> (3.5) 1267 Votes</td></tr>
+    <tr><td>Rating</td><td></td></tr>
     <tr><td>Uploaded At</td><td>One day ago</td></tr>
-    <tr><td>Views</td><td>124 Views</td></tr>
-  </tbody>
+    <tr><td>Views</td><td>124 Views</td></tr> -->
+    </tbody>
 </table>
 </template>
 
@@ -51,13 +57,17 @@
 		},
 		data: function () {
 			return {
-				tmpdata: []
+				tmpdata: {},
+                remap: []
 			}
 		},
         events: {
             'row-flash': function (data) {
-                //
+                this.tmpdata = data;
             }
+        },
+        ready: function () {
+            this.remap = this.maps;
         }
 	}
 </script>

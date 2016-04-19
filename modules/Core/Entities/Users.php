@@ -8,4 +8,11 @@ class Users extends EloquentUser {
     protected $fillable = [];
     protected $table = 'users';
 
+    public function manga() {
+    	return $this->hasMany(__NAMESPACE__.'\Manga', 'id_uploader');
+    }
+
+    public function fullname() {
+    	return $this->first_name . ' ' . $this->last_name;
+    }
 }
