@@ -105,6 +105,8 @@ class MangaController extends Controller implements AjaxResponse {
 			$data['thumb'] = $manga->thumb_path;
 			$data['views'] = $manga->views;
 			$data['rating'] = ['rating' => 1.5, 'votes' => 1, 'enable' => false];
+			$data['artist'] = ['test', 'artist'];
+			$data['tags'] = $manga->getTagsArr();
 			$data['created_at'] = $manga->created_at->diffForHumans();
 			$data['uploader'] = $manga->uploader->fullname();
 

@@ -18,11 +18,11 @@
 			<vue-desc-content slot="right" :maps="[
 				{label:'Title', key:'title', type:'text'},
 				{label:'Synopsis', key:'description', type:'text'},
-				{label:'Artist', key: 'artist', type:'label'},
-				{label:'Category', key:'category', type:'text'},
-				{label:'Tags', key:'tags', type:'label'},
+				{label:'Artist', key: 'artist', type:'link', format:'{0}', class:['ui','tag','label','yellow']},
+				{label:'Category', key:'category', type:'link', format:'{0}'},
+				{label:'Tags', key:'tags', type:'link', format:'{0}', class:['ui','tag','label','green']},
 				{label:'Rating', key:'rating', type:'rating'},
-				{label:'Views', key:'views', type:'text'},
+				{label:'Views', key:'views', type:'number', pluralize:'View'},
 				{label:'Uploaded at', key:'created_at', type:'text'},
 				{label:'Uploader', key:'uploader', type:'text'}
 			]"></vue-desc-content>

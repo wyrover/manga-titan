@@ -19,3 +19,4 @@ Vue.component('vue-desc',			require('./component/vue-desc.vue'));
 Vue.component('vue-desc-image',		require('./component/vue-desc-image.vue'));
 Vue.component('vue-desc-content',	require('./component/vue-desc-content.vue'));
 Vue.component('vue-desc-rating',	require('./component/vue-desc-rating.vue'));
+Vue.component('vue-desc-link',		require('./component/vue-desc-link.vue'));
