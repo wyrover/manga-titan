@@ -15,4 +15,8 @@ class Comment extends Model {
         return $this->morphedByMany(__NAMESPACE__.'\MangaPage', 'commentable', 'commentable');
     }
 
+    public function user() {
+    	return $this->belongsTo(__NAMESPACE__.'\Users', 'id_users');
+    }
+
 }

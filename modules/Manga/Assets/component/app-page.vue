@@ -78,6 +78,7 @@
 			}
 		},
 		events: {
+			'form-refresh': function () {return this.$broadcast('form-refresh');},
 			'app-notify': function(data) {return this.appNotify(data);},
 			'app-confirm': function (data) {return this.appConfirm(data);},
 			'app-input': function (data) {return this.appInput(data);},

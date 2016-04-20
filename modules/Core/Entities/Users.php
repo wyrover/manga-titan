@@ -15,4 +15,8 @@ class Users extends EloquentUser {
     public function fullname() {
     	return $this->first_name . ' ' . $this->last_name;
     }
+
+    public function comments() {
+    	return $this->hasMany(__NAMESPACE__.'\Comment', 'id_users');
+    }
 }

@@ -37,11 +37,11 @@
 		link-format="{{$routeurl}}"></vue-list>
 		<vue-pagination></vue-pagination>
 	</vue-form>
-	<h3 class="ui header dividing">Comments</h3>
 	<vue-form :form-action="{get:'get-comment'}" :optional-param="{id_manga: {{$id_manga}} }" id="comment-list">
 		<vue-list
 		list-type="comment"
-		:maps="{author:'author', image: 'image', comment: 'comment', created_at: 'created_at'}"></vue-list>
+		:maps="{author:'author', image: 'image', comment: 'comment', created_at: 'created_at'}"
+		:with-extra="true"></vue-list>
 	</vue-form>
 	<vue-form :form-action="{save:'save-comment'}" :optional-param="{id_manga: {{$id_manga}} }" id="comment">
 		<div class="ui form" style="max-width:650px;width:100%;">

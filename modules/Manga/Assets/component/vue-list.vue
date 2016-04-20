@@ -114,15 +114,16 @@
 		</li>
 	</ul>
 
-	<div class="ui comments" v-if="listType=='comment'">
-		<div class="comment" v-for="n in 5">
-			<a class="avatar"><img src="/manga/image/thumb/dummy.png" alt=""></a>
+	<div class="ui comments" v-if="listType=='comment' && data_list.length > 0">
+		<h3 v-if="withExtra" class="ui header dividing">Comments</h3>
+		<div class="comment" v-for="item in data_list">
+			<a class="avatar"><img :src="getImage(item[maps.image])" alt=""></a>
 			<div class="content">
-				<a class="author">Joe Henderson</a>
+				<a class="author">{{ item[maps.author] }}</a>
 				<div class="metadata">
-					<span class="date">5 days ago</span>
+					<span class="date">{{ item[maps.created_at] }}</span>
 				</div>
-				<div class="text">Thanks</div>
+				<div class="text">{{ item[maps.comment] }}</div>
 			</div>
 		</div>
 	</div>
@@ -180,6 +181,11 @@
 			}
 		},
 		methods: {
+			getImage: function (image) {
+				if (image=='')
+					return '/manga/image/thumb/dummy.png';
+				return '/manga/image/thumb/' + image;
+			},
 			getBackground: function (image) {
 				if (image == '')
 					return {backgroundImage:"url('/manga/image/thumb/dummy.png')"};
