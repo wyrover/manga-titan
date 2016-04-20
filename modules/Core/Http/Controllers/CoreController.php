@@ -55,6 +55,10 @@ class CoreController extends Controller {
 			'delete-page'		=> __NAMESPACE__.'\PageController::deleteData',
 			'get-thumb-page'	=> __NAMESPACE__.'\PageController::getThumbs',
 			'get-pages-for-read'=> __NAMESPACE__.'\PageController::getPages',
+
+			'get-comment'		=> __NAMESPACE__.'\CommentController::getData',
+			'save-comment'		=> __NAMESPACE__.'\CommentController::saveData',
+			'delete-comment'	=> __NAMESPACE__.'\CommentController::deleteData',
 		];
 	}
 	

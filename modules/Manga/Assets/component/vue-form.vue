@@ -71,6 +71,7 @@
 						var notify = {title: 'Save Success', text: data.message};
 						this.$dispatch('form-refresh');
 						this.$dispatch('app-notify', notify);
+						this.$emit('form-reset');
 						if (this.hideOnSave) this.$emit('form-cancel');
 					} else {
 						var notify = {title: 'Save Failed', text: data.message, type:'error'};
@@ -83,6 +84,9 @@
 					this.$broadcast('change-page', {page_num:data.data.page_num, max_page:data.data.max_page});
 					this.$broadcast('row-flash', data.data.data);
 				}
+			},
+			'form-reset': function () {
+				$('#' + this.id_form)[0].reset();
 			},
 			'form-refresh': function () {
 				if (! ("get" in this.formAction)) return;
