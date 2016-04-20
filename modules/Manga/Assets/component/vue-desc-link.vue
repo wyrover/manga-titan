@@ -14,7 +14,7 @@
 			format: {
 				required: false,
 				type: String,
-				default: "{0}"
+				default: "{item}"
 			},
 			customClass: {
 				required: false,
@@ -24,7 +24,10 @@
 		},
 		methods: {
 			getUrl: function (item) {
-				return item;
+				var target = /\{\w+\}/ig;
+				var ret = '';
+				ret = this.format.replace(target, item);
+				return ret;
 			},
 			getText: function (item, index) {
 				if (index == this.items.length - 1)

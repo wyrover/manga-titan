@@ -4,8 +4,10 @@
 @parent - Description
 @endsection
 
-@set('routeurl',route('manga.read',[$id_manga, '{page}']))
-@set('routeurl', str_ireplace(['%7B','%7D'],['{','}'], $routeurl))
+@set('tagsurl', str_ireplace(['%7B','%7D'],['{','}'], route('manga.tags', ['{item}'])))
+@set('categoryurl', str_ireplace(['%7B','%7D'],['{','}'], route('manga.category', ['{item}'])))
+@set('artisturl', str_ireplace(['%7B','%7D'],['{','}'], route('manga.artist', ['{item}'])))
+@set('routeurl', str_ireplace(['%7B','%7D'],['{','}'], route('manga.read',[$id_manga, '{page}'])))
 @section('content')
 <div class="sixteen wide column">
 	<h3 class="ui header dividing">Description</h3>
@@ -18,9 +20,9 @@
 			<vue-desc-content slot="right" :maps="[
 				{label:'Title', key:'title', type:'text'},
 				{label:'Synopsis', key:'description', type:'text'},
-				{label:'Artist', key: 'artist', type:'link', format:'{0}', class:['ui','tag','label','yellow']},
-				{label:'Category', key:'category', type:'link', format:'{0}'},
-				{label:'Tags', key:'tags', type:'link', format:'{0}', class:['ui','tag','label','green']},
+				{label:'Artist', key: 'artist', type:'link', format:'{{$artisturl}}', class:['ui','tag','label','yellow']},
+				{label:'Category', key:'category', type:'link', format:'{{$categoryurl}}'},
+				{label:'Tags', key:'tags', type:'link', format:'{{$tagsurl}}', class:['ui','tag','label','green']},
 				{label:'Rating', key:'rating', type:'rating'},
 				{label:'Views', key:'views', type:'number', pluralize:'View'},
 				{label:'Uploaded at', key:'created_at', type:'text'},
