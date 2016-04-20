@@ -9,7 +9,7 @@
 </style>
 
 <template>
-	<form :id="id_form" :name="id_form" class="ui form" v-show="!isHidden" transition="expand" method="post">
+	<form :id="id_form" :name="id_form" class="ui form" v-show="!isHidden" transition="expand" method="post" v-on:submit.prevent="submit">
 		<slot></slot>
 		<input type="hidden" :name="item.name" :value="item.value" v-for="item in additionalParam">
 	</form>
@@ -48,6 +48,9 @@
 			}
 		},
 		methods: {
+			submit: function () {
+				this.$emit('form-save', {}, this.name);
+			},
 			getFormValues: function () {
 				var submitdata = $('#' + this.id_form).serializeArray();
 				var objectsubmit = {};

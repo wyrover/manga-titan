@@ -38,7 +38,7 @@
 					title:data.title,
 					text:data.text,
 					type: ("type" in data)?data.type:'success',
-					timer: 1000,
+					timer: 1400,
 					showConfirmButton:false
 				});
 			},
