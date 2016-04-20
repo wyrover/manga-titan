@@ -1,3 +1,16 @@
+.form-admin form {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  flex-shirnk: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
 .form-admin .form-tab.ui.menu {
   background-color: #F3F4F5;
   color: rgba(0, 0, 0, 0.6);
@@ -61,6 +74,12 @@
   height: calc(100% - 100px);
   padding: 0;
   overflow-y: auto;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 .form-admin .form-content > .ui.table.form-table > thead > tr:first-child {
@@ -222,7 +241,21 @@
 
 #admin-area > .ui.grid {
   height: 100%;
+  width: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
   margin: 0;
+}
+
+#admin-area > .ui.grid > .column.form-admin {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 #admin-area > .ui.grid.grid-fade {

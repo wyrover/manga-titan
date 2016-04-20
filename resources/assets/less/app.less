@@ -5,6 +5,12 @@
 
 @my-font-family: "Open Sans";
 .form-admin {
+	form {
+		display: flex;
+		flex-grow: 1;
+		flex-shirnk:1;
+		flex-direction: column;
+	}
 	.form-tab.ui.menu {
 		background-color:#F3F4F5;
 		color:rgba(0,0,0,.6);
@@ -49,6 +55,8 @@
 		height: ~"calc(100% - 100px)";
 		padding:0;
 		overflow-y:auto;
+		display: flex;
+		flex-grow: 1;
 		> .ui.table.form-table {
 			> thead > tr:first-child {
 				background-color:#F5f5f5;
@@ -186,7 +194,14 @@
 	}
 	> .ui.grid {
 		height: 100%;
+		width:100%;
+		display:flex;
+		position: absolute;
 		margin:0;
+		> .column.form-admin {
+			display: flex;
+			flex-direction: column;
+		}
 	}
 	> .ui.grid.grid-fade {
 		position: absolute;
